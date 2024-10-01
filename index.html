@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Plinko-app</title>
+    <meta name="plinko-balls-app" content="plinko-app">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <header class="header">
+    <a href="/" class="logo">Pachinko</a>
+    <div class="wallet">
+      <label class="walletlabel">0,00</label>
+      <i class="fa-solid fa-euro-sign fa-lg"></i>
+    </div>
+    <button class="walletbutton">Wallet</button>
+  </header>
+
+  <body>
+    <section class="homesection">
+      <div class="betcontent">
+        <div class="togglecontainer">
+          <input type="checkbox" id="check">
+          <label for="check" class="togglebutton">
+            <span class="manualtext">Manual</span>
+            <span class="autotext">Auto</span>
+          </label>
+        </div>
+
+        <div class="amountcontainer">
+          <h3>Amount</h3>
+          <div class="amountdiv">
+            <input type="number" id="betInput" name="quantitybet" placeholder="0,00"
+              class="amountinput" min="0.10" max="1000.00" onchange="betFixed()">
+            <button class="amountbutton1" onclick="halfBet()">
+              <h3>½</h3>
+            </button>
+            <div class="buttondivider"></div>
+            <button class="amountbutton2" onclick="doubleBet()">
+              <h3>2x</h3>
+            </button>
+          </div>
+        </div>
+
+        <div class="riskcontainer">
+          <h3>Risk</h3>
+          <div class="dropdown">
+            <div class="select">
+              <span class="selected">high</span>
+              <div class="caret"></div>
+            </div>
+            <ul class="menu">
+              <li id="riskSelectLow">low</li>
+              <li id="riskSelectMedium">medium</li>
+              <li id="riskSelectHigh" class="active">high</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="numbercontainer" id="number">
+          <h3>Number of Games</h3>
+          <div class="numberdiv">
+            <input type="number" name="quantitybet" placeholder="3"
+              class="numberinput" min="0.1" max="1000">
+          </div>
+        </div>
+        <button class="play" id="playbutton" onclick="play()">
+          <h1>Play</h1>
+        </button>
+      </div>
+      <div class="gamecontent">
+        <div class="ballcontent">
+          <div class="balldiv3">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+          </div>
+          <div class="balldiv4">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+          </div>
+          <div class="balldiv5">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv6">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv7">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv8">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv9">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv10">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv11">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv12">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv13">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv14">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv15">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv16">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv17">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+          <div class="balldiv18">
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+            <div class="singleball"></div>
+
+          </div>
+        </div>
+        <div class="wincontent">
+          <div>
+            <h4 class="multiplier multiplier7">1000</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier6">130</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier5">26x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier4">9x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier3">4x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier2">2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier1">0.2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier1">0.2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier1">0.2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier1">0.2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier1">0.2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier2">2x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier3">4x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier4">9x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier5">26x</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier6">130</h4>
+          </div>
+          <div>
+            <h4 class="multiplier multiplier7">1000</h4>
+          </div>
+        </div>
+      </div>
+      <div class="historycontent">
+        <div class="historydiv">
+          <h4>1000x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>0.2x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>0.2x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>9x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>0.2x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>2x</h4>
+        </div>
+        <div class="historydiv">
+          <h4>0.2x</h4>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.21.0/matter.min.js"></script>
+    <script src="index.js" async defer></script>
+  </body>
+
+</html>
