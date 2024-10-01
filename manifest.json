@@ -1,0 +1,16 @@
+{
+    "name": "PlinkoApp",
+    "short_name": "Plinko",
+    "description": "GAMBLE!",
+    "start_url": "index.html",
+    "id": "PlinkoApp",
+    "orientation": "landscape",
+    "display": "fullscreen",
+    "background_color": "#151515",
+    "theme_color": "#151515",
+    "icons": [
+    ],
+    "screenshots": [
+    ]
+  }
+  
