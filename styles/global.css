@@ -618,3 +618,7 @@ input[type="checkbox"] {
 .historydiv h4 {
     margin: auto;
 }
+
+.animate {
+    animation: zoomIn 0.25s ease forwards;
+}

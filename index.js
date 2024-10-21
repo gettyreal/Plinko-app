@@ -106,7 +106,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita
-engine.world.gravity.y =0.30;
+engine.world.gravity.y = 0.35;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -122,8 +122,10 @@ const render = Render.create({
 });
 
 // Aggiungi il terreno e i bordi laterali
-const ground = Bodies.rectangle(460, 750, 925, 1, { isStatic: true, render: { fillStyle: '#F373c44' } });
-Composite.add(world, [ground]);
+const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' } });
+const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+Composite.add(world, [ground, leftWall, rightWall]);
 
 // Crea un array di pioli
 const pegRadius = 6;
@@ -137,12 +139,12 @@ let wallDistrance = 420;
 // Genera i pioli in un layout piramidale centrato
 for (let row = 0; row < rows; row++) {
     const numCols = startCols + row; // Aggiungi un piolo in più per ogni riga
-    xSpacing =56; // Spaziatura uniforme tra i pioli
+    xSpacing = 56; // Spaziatura uniforme tra i pioli
 
     for (let col = 0; col < numCols; col++) {
         const x = - 50 + wallDistrance + xSpacing * (col + 1); // Posiziona i pioli in modo centrato
         const y = 50 + row * rowSpacing; // Posiziona i pioli verticalmente con spaziatura uniforme
-        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' }});
+        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' } });
         pegs.push(peg);
     }
     wallDistrance -= 28;
@@ -164,7 +166,7 @@ function createBall() {
 }
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
-document.addEventListener('click', () => {
+document.getElementById('playbutton').addEventListener('click', () => {
     createBall();
 });
 
@@ -184,6 +186,24 @@ Events.on(engine, 'collisionStart', (event) => {
         if (bodyA === ground || bodyB === ground) {
             const ball = bodyA === ground ? bodyB : bodyA;
             Composite.remove(world, ball); //rimuovi pallina
+            const ballX = ball.position.x;
+            animateDiv(ballX);
         }
     });
 });
+
+function animateDiv(ballX) {
+    if (ballX > 12 && ballX < 62) {
+        multipliers[0].classList.add('animate');
+    } else if (ballX > 74 && ballX < 124) {
+
+    //finire animazioni alla caduta
+
+    setTimeout(() => {
+        multipliers.forEach(mul => {
+            if (mul.classList.contains('animate')) {
+                mul.classList.remove('animate');
+            }
+        });
+    }, 250); // Durata dell'animazione in millisecondi
+}
