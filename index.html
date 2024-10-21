@@ -37,8 +37,10 @@
         <div class="amountcontainer">
           <h3>Amount</h3>
           <div class="amountdiv">
-            <input type="number" id="betInput" name="quantitybet" placeholder="0,00"
-              class="amountinput" min="0.10" max="1000.00" onchange="betFixed()">
+            <input type="number" id="betInput" name="quantitybet"
+              placeholder="0,00"
+              class="amountinput" min="0.10" max="1000.00"
+              onchange="betFixed()">
             <button class="amountbutton1" onclick="halfBet()">
               <h3>½</h3>
             </button>
@@ -76,222 +78,8 @@
         </button>
       </div>
       <div class="gamecontent">
-        <div class="ballcontent">
-          <div class="balldiv3">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-          </div>
-          <div class="balldiv4">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-          </div>
-          <div class="balldiv5">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
+        <canvas id="plinkoCanvas" class="gamecanvas"></canvas>
 
-          </div>
-          <div class="balldiv6">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv7">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv8">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv9">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv10">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv11">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv12">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv13">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv14">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv15">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv16">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv17">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-          <div class="balldiv18">
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-            <div class="singleball"></div>
-
-          </div>
-        </div>
         <div class="wincontent">
           <div>
             <h4 class="multiplier multiplier7">1000</h4>
@@ -346,6 +134,7 @@
           </div>
         </div>
       </div>
+      
       <div class="historycontent">
         <div class="historydiv">
           <h4>1000x</h4>
@@ -371,7 +160,8 @@
       </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.21.0/matter.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
     <script src="index.js" async defer></script>
   </body>
 

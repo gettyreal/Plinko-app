@@ -50,29 +50,6 @@ document.getElementById('check').addEventListener('change', function () {
     }
 });
 
-
-function play() {
-
-    let randomWin = Math.floor(Math.random() * 10000) + 1;
-    console.log(randomWin);
-
-    if (randomWin < 10) { //scelta migliore
-        console.log("1000 X");
-    } else if (randomWin < 70) {
-        console.log("130 X");
-    } else if (randomWin < 300) {
-        console.log("26 X");
-    } else if (randomWin < 900) {
-        console.log("9 X");
-    } else if (randomWin < 2000) {
-        console.log("4 X");
-    } else if (randomWin < 5000) {
-        console.log("2 X");
-    } else { //scelta peggiore
-        console.log("0.2 X");
-    }
-}
-
 const betInput = document.getElementById("betInput");
 
 function halfBet() {
@@ -116,4 +93,117 @@ function changeMultipliers() {
         }
         multipliers.forEach(mul => mul.style.animation = "enterUp 0.4s ease forwards");
     }, 100);
+}
+
+
+//game physics
+
+// Importa oggetti da Matter.js
+const { Engine, Render, Runner, Bodies, Composite, Events, Body } = Matter;
+
+// Crea un motore fisico
+const engine = Engine.create();
+const world = engine.world;
+
+//diminuire la gravita
+engine.world.gravity.y = 0.35;
+
+// Crea il rendering della scena
+const canvas = document.getElementById('plinkoCanvas');
+const render = Render.create({
+    canvas: canvas,
+    engine: engine,
+    options: {
+        width: 964,
+        height: 750,
+        wireframes: false, // Disegna oggetti con riempimento solido
+        background: '#373c44'
+    }
+});
+
+// Aggiungi il terreno e i bordi laterali
+const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' } });
+const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+Composite.add(world, [ground, leftWall, rightWall]);
+
+// Crea un array di pioli
+const pegRadius = 6;
+const pegs = [];
+
+// Definisci la piramide di pioli con 14 righe, partendo da 3 e finendo con 18
+const startCols = 3; // Numero di pioli nella prima riga
+const rows = 16; // Numero totale di righe
+const rowSpacing = 45; // Spaziatura verticale tra le righe
+let wallDistrance = 420;
+// Genera i pioli in un layout piramidale centrato
+for (let row = 0; row < rows; row++) {
+    const numCols = startCols + row; // Aggiungi un piolo in più per ogni riga
+    xSpacing = 56; // Spaziatura uniforme tra i pioli
+
+    for (let col = 0; col < numCols; col++) {
+        const x = - 50 + wallDistrance + xSpacing * (col + 1); // Posiziona i pioli in modo centrato
+        const y = 50 + row * rowSpacing; // Posiziona i pioli verticalmente con spaziatura uniforme
+        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' } });
+        pegs.push(peg);
+    }
+    wallDistrance -= 28;
+}
+
+// Aggiungi i pioli al mondo
+Composite.add(world, pegs);
+
+// Funzione per creare una nuova pallina
+//campo di caduta: 280-360
+function createBall() {
+    const randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
+    const ball = Bodies.circle(randomX, 0, 11, {
+        restitution: 0.9,  // Rimbalzo
+        render: { fillStyle: '#D7263D' },
+    });
+    Composite.add(world, ball);
+    return ball;
+}
+
+// Aggiungi un nuovo evento per aggiungere una pallina cliccando
+document.getElementById('playbutton').addEventListener('click', () => {
+    createBall();
+});
+
+// Avvia il motore
+Engine.run(engine);
+Render.run(render);
+
+// Avvia il loop di aggiornamento fisico
+const runner = Runner.create();
+Runner.run(runner, engine);
+
+// Controllo delle collisioni e interazione con il terreno
+Events.on(engine, 'collisionStart', (event) => {
+    event.pairs.forEach(pair => {
+        const { bodyA, bodyB } = pair;
+        // Se una pallina colpisce il terreno, la rimuoviamo
+        if (bodyA === ground || bodyB === ground) {
+            const ball = bodyA === ground ? bodyB : bodyA;
+            Composite.remove(world, ball); //rimuovi pallina
+            const ballX = ball.position.x;
+            animateDiv(ballX);
+        }
+    });
+});
+
+function animateDiv(ballX) {
+    if (ballX > 12 && ballX < 62) {
+        multipliers[0].classList.add('animate');
+    } else if (ballX > 74 && ballX < 124) {
+
+    //finire animazioni alla caduta
+
+    setTimeout(() => {
+        multipliers.forEach(mul => {
+            if (mul.classList.contains('animate')) {
+                mul.classList.remove('animate');
+            }
+        });
+    }, 250); // Durata dell'animazione in millisecondi
 }
