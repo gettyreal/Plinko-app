@@ -5,26 +5,31 @@
         transform: translateY(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(10%);
         opacity: 0;
     }
 }
+
 @keyframes enterUp {
     0% {
         transform: translateY(10%);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
     }
 }
+
 @keyframes enterDown {
     0% {
         transform: translateY(-10%);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -37,9 +42,11 @@
         scale: 0.95;
         clip-path: inset(0 0 100% 0);
     }
+
     40% {
         opacity: 0.3;
     }
+
     100% {
         opacity: 1;
         scale: 1;
@@ -52,10 +59,12 @@
         scale: 0.95;
         opacity: 0;
     }
+
     30% {
         scale: 1.05;
         opacity: 1;
     }
+
     100% {
         scale: 1;
         opacity: 1;
@@ -136,7 +145,7 @@ h4 {
     color: #359b2c;
 }
 
-.walletbutton{
+.walletbutton {
     background-color: #359b2c;
     border: 2px solid #359b2c;
     height: 68px;
@@ -146,7 +155,7 @@ h4 {
     transition: 0.2s;
     color: #F6E9E9;
     font-size: 20px;
-    font-weight:600;
+    font-weight: 600;
     padding: 0 30px;
     transition: 0.3s ease all;
 }
@@ -304,7 +313,7 @@ input[type="checkbox"] {
     transition: 0.3s;
 }
 
-.amountbutton1:hover, 
+.amountbutton1:hover,
 .amountbutton2:hover {
     background-color: #373c44;
 }
@@ -373,7 +382,7 @@ input[type="checkbox"] {
     transition: 0.3s;
 }
 
-.caret-rotate  {
+.caret-rotate {
     transform: rotate(180deg);
 }
 
@@ -492,205 +501,26 @@ input[type="checkbox"] {
 
 .gamecontent {
     min-height: 820px;
-    display: grid;
     width: 70%;
     height: 110%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 5px;
     background-color: #373c44;
     border-radius: 20px;
 }
 
-.ballcontent {
-    margin-top: 5vh;
-    display: grid;
-    align-items: center;
-    gap: 0px;
-    justify-content: center;
-    animation: zoomIn 0.5s ease forwards;
-}
-
-.balldiv3 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(3, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv4 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(4, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv5 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(5, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv6 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(6, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv7 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(7, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv8 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(8, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv9 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(9, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv10 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(10, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv11 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(11, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv12 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(12, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv13 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(13, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv14 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(14, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-
-.balldiv15 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(15, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-
-.balldiv16 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(16, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.balldiv17 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(17, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-
-.balldiv18 {
-    height: 44px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(18, 44px);
-    gap: 10px;
-    justify-content: center;
-    place-items: center;
-}
-
-.singleball {
-    height: 14px;
-    width: 14px;
-    background-color: whitesmoke;
-    border-radius: 7px;
-    display: flex;
-    text-align: center;
-}
-
-.singleball h1 {
-    margin: auto;
+.gamecanvas {
+    width: 964px;
+    height: 775px;
 }
 
 .wincontent {
-    height: 50px;
+    width: 100%;
     display: grid;
-    align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
-    gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(44px, 44px));
+    gap: 12px;
     justify-content: center;
     opacity: 0;
     animation: enterDown 0.3s 0.4s ease forwards;
@@ -704,7 +534,6 @@ input[type="checkbox"] {
 
 .multiplier1 {
     background-color: #359b2c;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -714,7 +543,6 @@ input[type="checkbox"] {
 
 .multiplier2 {
     background-color: #168118;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -724,7 +552,6 @@ input[type="checkbox"] {
 
 .multiplier3 {
     background-color: #157811;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -734,7 +561,6 @@ input[type="checkbox"] {
 
 .multiplier4 {
     background-color: #036704;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -744,7 +570,6 @@ input[type="checkbox"] {
 
 .multiplier5 {
     background-color: #09580b;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -754,7 +579,6 @@ input[type="checkbox"] {
 
 .multiplier6 {
     background-color: #084f09;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
@@ -764,7 +588,6 @@ input[type="checkbox"] {
 
 .multiplier7 {
     background-color: #0c4407;
-    margin-left: 5px;
     display: flex;
     text-align: center;
     width: 44px;
