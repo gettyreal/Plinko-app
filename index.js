@@ -195,7 +195,7 @@ Events.on(engine, 'collisionStart', (event) => {
 function animateDiv(ballX) {
     if (ballX > 12 && ballX < 62) {
         multipliers[0].classList.add('animate');
-    } else if (ballX > 74 && ballX < 124) {
+    } else if (ballX > 74 && ballX < 124)
 
     //finire animazioni alla caduta
 
