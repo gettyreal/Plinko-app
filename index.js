@@ -106,7 +106,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita
-engine.world.gravity.y = 0.55;
+engine.world.gravity.y = 0.30;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -166,7 +166,7 @@ function createBall() {
         randomX += 1; //slitta di 1px per non lasciarla droppare li
     }
     const ball = Bodies.circle(randomX, 0, 11, {
-        restitution: 0.9,  // Rimbalzo
+        restitution: 1.05,  // Rimbalzo
         render: { fillStyle: '#D7263D' },
         collisionFilter: {
             category: ballCategory,
