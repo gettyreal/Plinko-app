@@ -106,7 +106,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita
-engine.world.gravity.y = 0.35;
+engine.world.gravity.y = 0.55;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -121,10 +121,15 @@ const render = Render.create({
     }
 });
 
+//categorie
+let pegCategory = 0x0002;
+let wallCategory = 0x0003;
+let ballCategory = 0x004;
+
 // Aggiungi il terreno e i bordi laterali
-const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' } });
-const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
-const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' }});
+const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' }});
+const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44'}});
 Composite.add(world, [ground, leftWall, rightWall]);
 
 // Crea un array di pioli
@@ -144,7 +149,7 @@ for (let row = 0; row < rows; row++) {
     for (let col = 0; col < numCols; col++) {
         const x = - 50 + wallDistrance + xSpacing * (col + 1); // Posiziona i pioli in modo centrato
         const y = 50 + row * rowSpacing; // Posiziona i pioli verticalmente con spaziatura uniforme
-        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' } });
+        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' }});
         pegs.push(peg);
     }
     wallDistrance -= 28;
@@ -157,9 +162,16 @@ Composite.add(world, pegs);
 //campo di caduta: 280-360
 function createBall() {
     const randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
+    if (randomX == 426 || randomX == 454|| randomX == 482 || randomX == 510|| randomX == 538) {
+        randomX += 1; //slitta di 1px per non lasciarla droppare li
+    }
     const ball = Bodies.circle(randomX, 0, 11, {
         restitution: 0.9,  // Rimbalzo
         render: { fillStyle: '#D7263D' },
+        collisionFilter: {
+            category: ballCategory,
+            mask: pegCategory | wallCategory
+        }
     });
     Composite.add(world, ball);
     return ball;
@@ -195,7 +207,7 @@ Events.on(engine, 'collisionStart', (event) => {
 function animateDiv(ballX) {
     if (ballX > 12 && ballX < 62) {
         multipliers[0].classList.add('animate');
-    } else if (ballX > 74 && ballX < 124) {
+    } else if (ballX > 74 && ballX < 124) 
 
     //finire animazioni alla caduta
 
