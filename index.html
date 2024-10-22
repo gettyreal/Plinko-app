@@ -17,7 +17,7 @@
   <header class="header">
     <a href="/" class="logo">Pachinko</a>
     <div class="wallet">
-      <label class="walletlabel">0,00</label>
+      <label class="walletlabel" id="walletBalance">100.00</label>
       <i class="fa-solid fa-euro-sign fa-lg"></i>
     </div>
     <button class="walletbutton">Wallet</button>
@@ -37,7 +37,7 @@
         <div class="amountcontainer">
           <h3>Amount</h3>
           <div class="amountdiv">
-            <input type="number" id="betInput" name="quantitybet"
+            <input type="number" id="betInput"
               placeholder="0,00"
               class="amountinput" min="0.10" max="1000.00"
               onchange="betFixed()">
@@ -69,8 +69,8 @@
         <div class="numbercontainer" id="number">
           <h3>Number of Games</h3>
           <div class="numberdiv">
-            <input type="number" name="quantitybet" placeholder="3"
-              class="numberinput" min="0.1" max="1000">
+            <input type="number" id="gamesInput" placeholder="3"
+              class="numberinput" min="1" max="1000">
           </div>
         </div>
         <button class="play" id="playbutton">

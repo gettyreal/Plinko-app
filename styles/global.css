@@ -71,6 +71,13 @@
     }
 }
 
+@keyframes plinkoWin {
+    50% {
+        transform: translateY(20%);
+        scale: 1.01;
+    }
+}
+
 
 * {
     margin: 0;
@@ -620,5 +627,5 @@ input[type="checkbox"] {
 }
 
 .animate {
-    animation: zoomIn 0.25s ease forwards;
+    animation: plinkoWin 0.15s ease forwards;
 }

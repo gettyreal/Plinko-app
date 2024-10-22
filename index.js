@@ -39,8 +39,10 @@ dropdowns.forEach(dropdown => {
     });
 });
 
+const gameAutoCheck = document.getElementById('check');
+
 //mostra l'opzione number of games
-document.getElementById('check').addEventListener('change', function () {
+gameAutoCheck.addEventListener('change', function () {
     const numbercontainer = document.getElementById('number');
 
     if (this.checked) {
@@ -50,7 +52,11 @@ document.getElementById('check').addEventListener('change', function () {
     }
 });
 
-const betInput = document.getElementById("betInput");
+const walletBalance = document.getElementById("walletBalance"); //soldi nel saldo
+let balance = parseFloat(walletBalance.textContent);
+
+const betInput = document.getElementById("betInput"); //import della bet dal html
+const gamesInput = document.getElementById("gamesInput"); //import del numero di giochi
 
 function halfBet() {
     betInput.value = (parseFloat(betInput.value) / 2).toFixed(2);
@@ -72,9 +78,10 @@ const riskSelectLow = document.getElementById("riskSelectLow");
 const riskSelectMedium = document.getElementById("riskSelectMedium");
 const riskSelectHigh = document.getElementById("riskSelectHigh");
 const multipliers = document.querySelectorAll(".multiplier");
-const multiplierLow = ["25", "18", "10x", "4x", "2x", "1x", "0.5x", "0.5x", "0.5x", "0.5x", "0.5x", "1x", "2x", "4x", "10x", "18", "25"];
-const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x", "0.3x", "0.3x", "0.3x", "1.5x", "3x", "6x", "10x", "43", "100"];
-const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000"];
+const multiplierLow = ["25", "18", "10x", "4x", "2x", "1x", "0.5x", "0.5x", "0.5x", "0.5x", "0.5x", "1x", "2x", "4x", "10x", "18", "25", "1"];
+const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x", "0.3x", "0.3x", "0.3x", "1.5x", "3x", "6x", "10x", "43", "100", "1"];
+const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000", "1"];
+
 
 function changeMultipliers() {
     multipliers.forEach(mul => mul.style.animation = "disappearDown 0.1s ease forwards");
@@ -127,9 +134,9 @@ let wallCategory = 0x0003;
 let ballCategory = 0x004;
 
 // Aggiungi il terreno e i bordi laterali
-const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' }});
-const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' }});
-const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44'}});
+const ground = Bodies.rectangle(482, 750, 3000, 1, { isStatic: true, render: { fillStyle: '#373c44' } });
+const leftWall = Bodies.rectangle(0, 350, 0, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+const rightWall = Bodies.rectangle(964, 350, 0, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
 Composite.add(world, [ground, leftWall, rightWall]);
 
 // Crea un array di pioli
@@ -149,7 +156,7 @@ for (let row = 0; row < rows; row++) {
     for (let col = 0; col < numCols; col++) {
         const x = - 50 + wallDistrance + xSpacing * (col + 1); // Posiziona i pioli in modo centrato
         const y = 50 + row * rowSpacing; // Posiziona i pioli verticalmente con spaziatura uniforme
-        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' }});
+        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' } });
         pegs.push(peg);
     }
     wallDistrance -= 28;
@@ -161,26 +168,55 @@ Composite.add(world, pegs);
 // Funzione per creare una nuova pallina
 //campo di caduta: 280-360
 function createBall() {
-    const randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
-    if (randomX == 426 || randomX == 454|| randomX == 482 || randomX == 510|| randomX == 538) {
+    balance -= betInput.value; //modifica del saldo
+    walletBalance.textContent = (balance).toFixed(2);
+
+    let randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
+    if (randomX == 426 || randomX == 454 || randomX == 482 || randomX == 510 || randomX == 538) {
         randomX += 1; //slitta di 1px per non lasciarla droppare li
     }
     const ball = Bodies.circle(randomX, 0, 11, {
-        restitution: 1.05,  // Rimbalzo
-        render: { fillStyle: '#D7263D' },
+        restitution: 1,  // Rimbalzo
+        render: { fillStyle: '#4ae745' },
         collisionFilter: {
             category: ballCategory,
             mask: pegCategory | wallCategory
         }
     });
     Composite.add(world, ball);
-    return ball;
 }
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
-    createBall();
+    if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
+        alert("bet amount not valid");
+        return;
+    }
+
+    if (gameAutoCheck.checked) {
+        if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
+            repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
+        } else {
+            alert("Bet amount or number of games exceeds your balance");
+        }
+    } else {
+        if (betInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
+            createBall(); // creazione di una pallina
+        } else {
+            alert("Bet amount exceeds your balance");
+        }
+    }
 });
+
+function repeatCreateBall(times) { //ripete creazione pallina
+    if (times > 0) {
+        console.log(times);
+        createBall();
+        setTimeout(() => {
+            repeatCreateBall(times - 1);
+        }, 200); //ripeti creazione ogni 200 millisecondi
+    }
+}
 
 // Avvia il motore
 Engine.run(engine);
@@ -199,17 +235,50 @@ Events.on(engine, 'collisionStart', (event) => {
             const ball = bodyA === ground ? bodyB : bodyA;
             Composite.remove(world, ball); //rimuovi pallina
             const ballX = ball.position.x;
-            animateDiv(ballX);
+            win(ballX);
         }
     });
 });
 
-function animateDiv(ballX) {
-    if (ballX > 12 && ballX < 62) {
-        multipliers[0].classList.add('animate');
+function win(ballX) {
+    // casi di caduta
+    if (ballX > 12 && ballX < 56) {
+        winReward(0);
+    } else if (ballX > 68 && ballX < 112) {
+        winReward(1);
+    } else if (ballX > 124 && ballX < 168) {
+        winReward(2);
+    } else if (ballX > 180 && ballX < 224) {
+        winReward(3);
+    } else if (ballX > 236 && ballX < 280) {
+        winReward(4);
+    } else if (ballX > 292 && ballX < 336) {
+        winReward(5);
+    } else if (ballX > 348 && ballX < 392) {
+        winReward(6);
+    } else if (ballX > 404 && ballX < 448) {
+        winReward(7);
+    } else if (ballX > 460 && ballX < 504) {
+        winReward(8);
+    } else if (ballX > 516 && ballX < 560) {
+        winReward(9);
+    } else if (ballX > 572 && ballX < 616) {
+        winReward(10);
+    } else if (ballX > 628 && ballX < 672) {
+        winReward(11);
+    } else if (ballX > 684 && ballX < 728) {
+        winReward(12);
+    } else if (ballX > 740 && ballX < 784) {
+        winReward(13);
+    } else if (ballX > 796 && ballX < 840) {
+        winReward(14);
+    } else if (ballX > 852 && ballX < 896) {
+        winReward(15);
+    } else if (ballX > 908 && ballX < 952) {
+        winReward(16);
+    } else { //se la pallina cade al suolo fuori dalle vincite
+        winReward(17); //17 non da nulla e assegna multiplier a 1;
     }
-
-    //finire animazioni alla caduta
 
     setTimeout(() => {
         multipliers.forEach(mul => {
@@ -217,5 +286,22 @@ function animateDiv(ballX) {
                 mul.classList.remove('animate');
             }
         });
-    }, 250); // Durata dell'animazione in millisecondi
+    }, 150); // Durata dell'animazione in millisecondi
+}
+
+function winReward(typeDiv) {
+    multipliers[typeDiv].classList.add('animate');
+
+    if (riskSelectLow.classList.contains("active")) {
+        balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
+        walletBalance.textContent = (balance).toFixed(2);
+    }
+    else if (riskSelectMedium.classList.contains("active")) {
+        balance += betInput.value * parseFloat(multiplierMedium[typeDiv]);
+        walletBalance.textContent = (balance).toFixed(2);
+    }
+    else if (riskSelectHigh.classList.contains("active")) {
+        balance += betInput.value * parseFloat(multiplierHigh[typeDiv]);
+        walletBalance.textContent = (balance).toFixed(2);
+    }
 }
