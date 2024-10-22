@@ -168,15 +168,9 @@ Composite.add(world, pegs);
 // Funzione per creare una nuova pallina
 //campo di caduta: 280-360
 function createBall() {
-    //modifica al balanca
-    if (betInput.value > balance) {
-        alert("Bet amount exceeds your balance");
-        return;
-    } else {
-        balance -= betInput.value;
+    balance -= betInput.value; //modifica del saldo
         walletBalance.textContent = (balance).toFixed(2);
-    
-    }
+
     const randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
     if (randomX == 426 || randomX == 454 || randomX == 482 || randomX == 510 || randomX == 538) {
         randomX += 1; //slitta di 1px per non lasciarla droppare li
@@ -195,8 +189,29 @@ function createBall() {
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
-    createBall();
+    if (gameAutoCheck.checked) {
+        if (betInput.value * gamesInput.value < balance) { //check se il totale giocato non sia piu alto del balance
+            repeatCreateBall(gamesInput.value); //creazione in ripetizione di tot pallin
+        } else {
+            alert("Bet amount or number of games exceeds your balance");
+        }
+    } else {
+        if (betInput.value < balance) { //check se il totale giocato non sia piu alto del balance
+            createBall(); // creazione di una pallina
+        } else {
+            alert("Bet amount exceeds your balance");
+        }
+    }
 });
+
+function repeatCreateBall(times) { //ripete creazione pallina
+    if (times > 0) {
+        createBall();
+        setTimeout(() => {
+            repeatCreateBall(times - 1); 
+        }, 200); //ripeti creazione ogni 200 millisecondi
+    }
+}
 
 // Avvia il motore
 Engine.run(engine);
