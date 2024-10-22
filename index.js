@@ -184,19 +184,23 @@ function createBall() {
         }
     });
     Composite.add(world, ball);
-    return ball;
 }
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
+    if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
+        alert("bet amount not valid");
+        return;
+    }
+
     if (gameAutoCheck.checked) {
-        if (betInput.value * gamesInput.value < balance) { //check se il totale giocato non sia piu alto del balance
-            repeatCreateBall(gamesInput.value); //creazione in ripetizione di tot pallin
+        if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
+            repeatCreateBall(gamesInput.value); //creazione in ripetizione di tot palline
         } else {
             alert("Bet amount or number of games exceeds your balance");
         }
     } else {
-        if (betInput.value < balance) { //check se il totale giocato non sia piu alto del balance
+        if (betInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
             createBall(); // creazione di una pallina
         } else {
             alert("Bet amount exceeds your balance");
