@@ -39,8 +39,10 @@ dropdowns.forEach(dropdown => {
     });
 });
 
+const gameAutoCheck = document.getElementById('check');
+
 //mostra l'opzione number of games
-document.getElementById('check').addEventListener('change', function () {
+gameAutoCheck.addEventListener('change', function () {
     const numbercontainer = document.getElementById('number');
 
     if (this.checked) {
@@ -50,9 +52,11 @@ document.getElementById('check').addEventListener('change', function () {
     }
 });
 
-const betInput = document.getElementById("betInput"); //import della bet dal html
 const walletBalance = document.getElementById("walletBalance"); //soldi nel saldo
 let balance = parseFloat(walletBalance.textContent);
+
+const betInput = document.getElementById("betInput"); //import della bet dal html
+const gamesInput = document.getElementById("gamesInput"); //import del numero di giochi
 
 function halfBet() {
     betInput.value = (parseFloat(betInput.value) / 2).toFixed(2);
