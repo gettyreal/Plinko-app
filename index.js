@@ -127,9 +127,9 @@ let wallCategory = 0x0003;
 let ballCategory = 0x004;
 
 // Aggiungi il terreno e i bordi laterali
-const ground = Bodies.rectangle(482, 750, 964, 1, { isStatic: true, render: { fillStyle: '#373c44' }});
-const leftWall = Bodies.rectangle(0, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44' }});
-const rightWall = Bodies.rectangle(964, 350, 1, 700, { isStatic: true, render: { fillStyle: '#373c44'}});
+const ground = Bodies.rectangle(482, 750, 3000, 1, { isStatic: true, render: { fillStyle: '#373c44' } });
+const leftWall = Bodies.rectangle(0, 350, 0, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
+const rightWall = Bodies.rectangle(964, 350, 0, 700, { isStatic: true, render: { fillStyle: '#373c44' } });
 Composite.add(world, [ground, leftWall, rightWall]);
 
 // Crea un array di pioli
@@ -149,7 +149,7 @@ for (let row = 0; row < rows; row++) {
     for (let col = 0; col < numCols; col++) {
         const x = - 50 + wallDistrance + xSpacing * (col + 1); // Posiziona i pioli in modo centrato
         const y = 50 + row * rowSpacing; // Posiziona i pioli verticalmente con spaziatura uniforme
-        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' }});
+        const peg = Bodies.circle(x, y, pegRadius, { isStatic: true, render: { fillStyle: '#F6E9E9' } });
         pegs.push(peg);
     }
     wallDistrance -= 28;
@@ -162,11 +162,11 @@ Composite.add(world, pegs);
 //campo di caduta: 280-360
 function createBall() {
     const randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
-    if (randomX == 426 || randomX == 454|| randomX == 482 || randomX == 510|| randomX == 538) {
+    if (randomX == 426 || randomX == 454 || randomX == 482 || randomX == 510 || randomX == 538) {
         randomX += 1; //slitta di 1px per non lasciarla droppare li
     }
     const ball = Bodies.circle(randomX, 0, 11, {
-        restitution: 1.05,  // Rimbalzo
+        restitution: 1,  // Rimbalzo
         render: { fillStyle: '#D7263D' },
         collisionFilter: {
             category: ballCategory,
@@ -205,9 +205,43 @@ Events.on(engine, 'collisionStart', (event) => {
 });
 
 function animateDiv(ballX) {
-    if (ballX > 12 && ballX < 62) {
+    if (ballX > 12 && ballX < 56) {
         multipliers[0].classList.add('animate');
-    }
+    } else if (ballX > 68 && ballX < 112) {
+        multipliers[1].classList.add('animate');
+    } else if (ballX > 124 && ballX < 168) {
+        multipliers[2].classList.add('animate');
+    } else if (ballX > 180 && ballX < 224) {
+        multipliers[3].classList.add('animate');
+    } else if (ballX > 236 && ballX < 280) {
+        multipliers[4].classList.add('animate');
+    } else if (ballX > 292 && ballX < 336) {
+        multipliers[5].classList.add('animate');
+    } else if (ballX > 348 && ballX < 392) {
+        multipliers[6].classList.add('animate');
+    } else if (ballX > 404 && ballX < 448) {
+        multipliers[7].classList.add('animate');
+    } else if (ballX > 460 && ballX < 504) {
+        multipliers[8].classList.add('animate');
+    } else if (ballX > 516 && ballX < 560) {
+        multipliers[9].classList.add('animate');
+    } else if (ballX > 572 && ballX < 616) {
+        multipliers[10].classList.add('animate');
+    } else if (ballX > 628 && ballX < 672) {
+        multipliers[11].classList.add('animate');
+    } else if (ballX > 684 && ballX < 728) {
+        multipliers[12].classList.add('animate');
+    } else if (ballX > 740 && ballX < 784) {
+        multipliers[13].classList.add('animate');
+    } else if (ballX > 796 && ballX < 840) {
+        multipliers[14].classList.add('animate');
+    } else if (ballX > 852 && ballX < 896) {
+        multipliers[15].classList.add('animate');
+    } else if (ballX > 908 && ballX < 952) {
+        multipliers[16].classList.add('animate');
+    } 
+
+
 
     //finire animazioni alla caduta
 
@@ -217,5 +251,5 @@ function animateDiv(ballX) {
                 mul.classList.remove('animate');
             }
         });
-    }, 250); // Durata dell'animazione in millisecondi
+    }, 150); // Durata dell'animazione in millisecondi
 }
