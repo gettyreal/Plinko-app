@@ -57,6 +57,8 @@ let balance = parseFloat(walletBalance.textContent);
 
 const betInput = document.getElementById("betInput"); //import della bet dal html
 const gamesInput = document.getElementById("gamesInput"); //import del numero di giochi
+const hystory = document.querySelectorAll(".hystorydiv");
+
 
 function halfBet() {
     betInput.value = (parseFloat(betInput.value) / 2).toFixed(2);
