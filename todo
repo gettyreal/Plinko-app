@@ -1,0 +1,5 @@
+aggiornamenti:
+
+- animazione multiplier in auto mode. ==> capire perche' + fix ???
+- bugfix quando spam modalita' auto. ==> capire causa + fix, secondo me mettere delay per non fottere il balance.
+- capire typeeeror nella modifica deglle storie. ==> risultati troppo veloci penso.

@@ -11,9 +11,13 @@ dropdowns.forEach(dropdown => {
 
     //event listner per select
     select.addEventListener('click', () => {
-        select.classList.toggle('select-clicked');
-        caret.classList.toggle('caret-rotate');
-        menu.classList.toggle('menu-open');
+        if (activeBalls == 0) {
+            select.classList.toggle('select-clicked');
+            caret.classList.toggle('caret-rotate');
+            menu.classList.toggle('menu-open');
+        } else {
+            alert("cannot modify multiplier");
+        }
     });
 
     // Loop di tutte le opzioni del menu
@@ -118,7 +122,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita //getty pc 0,35 others 0,55
-engine.world.gravity.y = 0.55;
+engine.world.gravity.y = 0.35;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -170,9 +174,12 @@ for (let row = 0; row < rows; row++) {
 // Aggiungi i pioli al mondo
 Composite.add(world, pegs);
 
+let activeBalls = 0; //numero delle palle in gioco
+
 // Funzione per creare una nuova pallina
 //campo di caduta: 280-360
 function createBall() {
+    activeBalls++; //ogni volta che si aggiunge una pallina si aiumenta il counter
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
 
@@ -215,11 +222,10 @@ document.getElementById('playbutton').addEventListener('click', () => {
 
 function repeatCreateBall(times) { //ripete creazione pallina
     if (times > 0) {
-        console.log(times);
         createBall();
         setTimeout(() => {
             repeatCreateBall(times - 1);
-        }, 200); //ripeti creazione ogni 200 millisecondi
+        }, 300); //ripeti creazione ogni 300 millisecondi
     }
 }
 
@@ -240,6 +246,7 @@ Events.on(engine, 'collisionStart', (event) => {
             const ball = bodyA === ground ? bodyB : bodyA;
             Composite.remove(world, ball); //rimuovi pallina
             const ballX = ball.position.x;
+            activeBalls--; //ogni volta che una pallina scompare dal gioco si diminuisce il counter
             win(ballX);
         }
     });

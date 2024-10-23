@@ -628,6 +628,3 @@ input[type="checkbox"] {
 .animateWin {
     animation: plinkoWin 0.15s ease forwards;
 }
-
-.animateHystory {
-}
