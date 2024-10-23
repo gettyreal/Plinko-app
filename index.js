@@ -287,8 +287,8 @@ function win(ballX) {
 
     setTimeout(() => {
         multipliers.forEach(mul => {
-            if (mul.classList.contains('animate')) {
-                mul.classList.remove('animate');
+            if (mul.classList.contains('animateWin')) {
+                mul.classList.remove('animateWin');
             }
         });
     }, 150); // Durata dell'animazione in millisecondi
@@ -296,7 +296,7 @@ function win(ballX) {
 
 function winReward(typeDiv) {
     if (typeDiv != 17) { //check se la vincita e' nulla per evitare typerror
-        multipliers[typeDiv].classList.add('animate');
+        multipliers[typeDiv].classList.add('animateWin');
     }
 
     if (riskSelectLow.classList.contains("active")) {

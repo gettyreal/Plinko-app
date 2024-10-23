@@ -625,6 +625,9 @@ input[type="checkbox"] {
     margin: auto;
 }
 
-.animate {
+.animateWin {
     animation: plinkoWin 0.15s ease forwards;
+}
+
+.animateHystory {
 }
