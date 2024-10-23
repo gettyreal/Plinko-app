@@ -230,7 +230,7 @@ function repeatCreateBall(times) { //ripete creazione pallina
 }
 
 // Avvia il motore
-Engine.run(engine);
+Matter.Runner.run(engine);
 Render.run(render);
 
 // Avvia il loop di aggiornamento fisico
@@ -328,93 +328,93 @@ function hystoryChange(typeDiv) {
     //modifca stile e testo del primo div in base alla vincita
     switch (typeDiv +  1) { 
         case 1:
-            hystoryDivs[6].style.background = backrounds[0];
+            hystoryDivs[0].style.background = backrounds[0];
             changeHystoryText(typeDiv);             
             break;
         case 2:
-            hystoryDivs[6].style.background = backrounds[1];
+            hystoryDivs[0].style.background = backrounds[1];
             changeHystoryText(typeDiv);  
             break;
         case 3:
-            hystoryDivs[6].style.background = backrounds[2];
+            hystoryDivs[0].style.background = backrounds[2];
             changeHystoryText(typeDiv);  
             break;
         case 4:
-            hystoryDivs[6].style.background = backrounds[3];
+            hystoryDivs[0].style.background = backrounds[3];
             changeHystoryText(typeDiv);  
             break;
         case 5:
-            hystoryDivs[6].style.background = backrounds[4];
+            hystoryDivs[0].style.background = backrounds[4];
             changeHystoryText(typeDiv);  
             break;
         case 6:
-            hystoryDivs[6].style.background = backrounds[5];
+            hystoryDivs[0].style.background = backrounds[5];
             changeHystoryText(typeDiv);  
             break;
         case 7:
-            hystoryDivs[6].style.background = backrounds[6];
+            hystoryDivs[0].style.background = backrounds[6];
             changeHystoryText(typeDiv);  
             break;
         case 8:
-            hystoryDivs[6].style.background = backrounds[6];
+            hystoryDivs[0].style.background = backrounds[6];
             changeHystoryText(typeDiv);  
             break;
         case 9:
-            hystoryDivs[6].style.background = backrounds[6];
+            hystoryDivs[0].style.background = backrounds[6];
             changeHystoryText(typeDiv);  
             break;
         case 10:
-            hystoryDivs[6].style.background = backrounds[6];
+            hystoryDivs[0].style.background = backrounds[6];
             changeHystoryText(typeDiv);  
             break;
         case 11:
-            hystoryDivs[6].style.background = backrounds[6];
+            hystoryDivs[0].style.background = backrounds[6];
             changeHystoryText(typeDiv);  
             break;
         case 12:
-            hystoryDivs[6].style.background = backrounds[5];
+            hystoryDivs[0].style.background = backrounds[5];
             changeHystoryText(typeDiv);  
             break;
         case 13:
-            hystoryDivs[6].style.background = backrounds[4];
+            hystoryDivs[0].style.background = backrounds[4];
             changeHystoryText(typeDiv);  
             break;
         case 14:
-            hystoryDivs[6].style.background = backrounds[3];
+            hystoryDivs[0].style.background = backrounds[3];
             changeHystoryText(typeDiv);  
             break;
         case 15:
-            hystoryDivs[6].style.background = backrounds[2];
+            hystoryDivs[0].style.background = backrounds[2];
             changeHystoryText(typeDiv);  
             break;
         case 16:
-            hystoryDivs[6].style.background = backrounds[1];
+            hystoryDivs[0].style.background = backrounds[1];
             changeHystoryText(typeDiv);  
             break;
         case 17:
-            hystoryDivs[6].style.background = backrounds[0];
+            hystoryDivs[0].style.background = backrounds[0];
             changeHystoryText(typeDiv);  
             break;
         default:
             break;
     }
-
+    /*
     if (typeDiv != 17) { //evita di aggiornare la storia a win nulla
         for(let i = 0; i < hystoryDivs.length; i++) {
             hystoryDivs[i].style.backgroundColor = hystoryDivs[i+1].style.backgroundColor;
             hystoryText[i].textContent = hystoryDivs[i+1].textContent;
         }
-    }
+    } */
 }
 
 function changeHystoryText(typediv) {
     if (riskSelectLow.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierLow[typediv];
+        hystoryText[0].textContent = multiplierLow[typediv];
     }
     else if (riskSelectMedium.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierMedium[typediv];
+        hystoryText[0].textContent = multiplierMedium[typediv];
     }
     else if (riskSelectHigh.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierHigh[typediv];
+        hystoryText[0].textContent = multiplierHigh[typediv];
     }
 }
