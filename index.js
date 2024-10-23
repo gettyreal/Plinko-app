@@ -58,6 +58,11 @@ let balance = parseFloat(walletBalance.textContent);
 const betInput = document.getElementById("betInput"); //import della bet dal html
 const gamesInput = document.getElementById("gamesInput"); //import del numero di giochi
 
+const hystoryDivs = document.querySelectorAll('.historycontent .historydiv'); //import del testo x storia
+// come modificare sfondo = hystoryDivs[0].style.backgroundColor = "#0c4407";
+const hystoryText = document.querySelectorAll('.historycontent .historydiv h4'); //import del testo x storia
+// come modificare testo hystoryText[0].textContent = "2000";
+
 function halfBet() {
     betInput.value = (parseFloat(betInput.value) / 2).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
@@ -71,7 +76,7 @@ function doubleBet() {
 function betFixed() {
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
-    else if (betInput.value > 1000) betInput.value = 1000;
+    
 }
 
 const riskSelectLow = document.getElementById("riskSelectLow");
@@ -112,8 +117,8 @@ const { Engine, Render, Runner, Bodies, Composite, Events, Body } = Matter;
 const engine = Engine.create();
 const world = engine.world;
 
-//diminuire la gravita
-engine.world.gravity.y = 0.30;
+//diminuire la gravita //getty pc 0,35 others 0,55
+engine.world.gravity.y = 0.55;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -282,15 +287,17 @@ function win(ballX) {
 
     setTimeout(() => {
         multipliers.forEach(mul => {
-            if (mul.classList.contains('animate')) {
-                mul.classList.remove('animate');
+            if (mul.classList.contains('animateWin')) {
+                mul.classList.remove('animateWin');
             }
         });
     }, 150); // Durata dell'animazione in millisecondi
 }
 
 function winReward(typeDiv) {
-    multipliers[typeDiv].classList.add('animate');
+    if (typeDiv != 17) { //check se la vincita e' nulla per evitare typerror
+        multipliers[typeDiv].classList.add('animateWin');
+    }
 
     if (riskSelectLow.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
@@ -303,5 +310,104 @@ function winReward(typeDiv) {
     else if (riskSelectHigh.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierHigh[typeDiv]);
         walletBalance.textContent = (balance).toFixed(2);
+    }
+    hystoryChange(typeDiv);
+}
+
+const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c"]; //array dei colori
+
+function hystoryChange(typeDiv) { 
+
+    //modifca stile e testo del primo div in base alla vincita
+    switch (typeDiv +  1) { 
+        case 1:
+            hystoryDivs[6].style.background = backrounds[0];
+            changeHystoryText(typeDiv);             
+            break;
+        case 2:
+            hystoryDivs[6].style.background = backrounds[1];
+            changeHystoryText(typeDiv);  
+            break;
+        case 3:
+            hystoryDivs[6].style.background = backrounds[2];
+            changeHystoryText(typeDiv);  
+            break;
+        case 4:
+            hystoryDivs[6].style.background = backrounds[3];
+            changeHystoryText(typeDiv);  
+            break;
+        case 5:
+            hystoryDivs[6].style.background = backrounds[4];
+            changeHystoryText(typeDiv);  
+            break;
+        case 6:
+            hystoryDivs[6].style.background = backrounds[5];
+            changeHystoryText(typeDiv);  
+            break;
+        case 7:
+            hystoryDivs[6].style.background = backrounds[6];
+            changeHystoryText(typeDiv);  
+            break;
+        case 8:
+            hystoryDivs[6].style.background = backrounds[6];
+            changeHystoryText(typeDiv);  
+            break;
+        case 9:
+            hystoryDivs[6].style.background = backrounds[6];
+            changeHystoryText(typeDiv);  
+            break;
+        case 10:
+            hystoryDivs[6].style.background = backrounds[6];
+            changeHystoryText(typeDiv);  
+            break;
+        case 11:
+            hystoryDivs[6].style.background = backrounds[6];
+            changeHystoryText(typeDiv);  
+            break;
+        case 12:
+            hystoryDivs[6].style.background = backrounds[5];
+            changeHystoryText(typeDiv);  
+            break;
+        case 13:
+            hystoryDivs[6].style.background = backrounds[4];
+            changeHystoryText(typeDiv);  
+            break;
+        case 14:
+            hystoryDivs[6].style.background = backrounds[3];
+            changeHystoryText(typeDiv);  
+            break;
+        case 15:
+            hystoryDivs[6].style.background = backrounds[2];
+            changeHystoryText(typeDiv);  
+            break;
+        case 16:
+            hystoryDivs[6].style.background = backrounds[1];
+            changeHystoryText(typeDiv);  
+            break;
+        case 17:
+            hystoryDivs[6].style.background = backrounds[0];
+            changeHystoryText(typeDiv);  
+            break;
+        default:
+            break;
+    }
+
+    if (typeDiv != 17) { //evita di aggiornare la storia a win nulla
+        for(let i = 0; i < hystoryDivs.length; i++) {
+            hystoryDivs[i].style.backgroundColor = hystoryDivs[i+1].style.backgroundColor;
+            hystoryText[i].textContent = hystoryDivs[i+1].textContent;
+        }
+    }
+}
+
+function changeHystoryText(typediv) {
+    if (riskSelectLow.classList.contains("active")) {
+        hystoryText[6].textContent = multiplierLow[typediv];
+    }
+    else if (riskSelectMedium.classList.contains("active")) {
+        hystoryText[6].textContent = multiplierMedium[typediv];
+    }
+    else if (riskSelectHigh.classList.contains("active")) {
+        hystoryText[6].textContent = multiplierHigh[typediv];
     }
 }

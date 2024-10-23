@@ -618,7 +618,6 @@ input[type="checkbox"] {
     text-align: center;
     width: 50px;
     height: 50px;
-    background-color: #359b2c;
     border-radius: 10px;
 }
 
@@ -626,6 +625,9 @@ input[type="checkbox"] {
     margin: auto;
 }
 
-.animate {
+.animateWin {
     animation: plinkoWin 0.15s ease forwards;
+}
+
+.animateHystory {
 }

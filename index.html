@@ -15,7 +15,7 @@
   </head>
 
   <header class="header">
-    <a href="/" class="logo">Pachinko</a>
+    <a href="/" class="logo">Plinko Balls</a>
     <div class="wallet">
       <label class="walletlabel" id="walletBalance">100.00</label>
       <i class="fa-solid fa-euro-sign fa-lg"></i>
@@ -39,7 +39,7 @@
           <div class="amountdiv">
             <input type="number" id="betInput"
               placeholder="0,00"
-              class="amountinput" min="0.10" max="1000.00"
+              class="amountinput" min="0.10" max="1000000.00"
               onchange="betFixed()">
             <button class="amountbutton1" onclick="halfBet()">
               <h3>½</h3>
@@ -137,25 +137,25 @@
       
       <div class="historycontent">
         <div class="historydiv">
-          <h4>1000x</h4>
+          <h4></h4>
         </div>
         <div class="historydiv">
-          <h4>0.2x</h4>
+          <h4 id="hystory"></h4>
         </div>
         <div class="historydiv">
-          <h4>0.2x</h4>
+          <h4 id="hystory"></h4>
         </div>
         <div class="historydiv">
-          <h4>9x</h4>
+          <h4 id="hystory"></h4>
         </div>
         <div class="historydiv">
-          <h4>0.2x</h4>
+          <h4 id="hystory"></h4>
         </div>
         <div class="historydiv">
-          <h4>2x</h4>
+          <h4 id="hystory"></h4>
         </div>
         <div class="historydiv">
-          <h4>0.2x</h4>
+          <h4 id="hystory"></h4>
         </div>
       </div>
     </section>
