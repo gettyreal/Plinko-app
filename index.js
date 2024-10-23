@@ -112,8 +112,8 @@ const { Engine, Render, Runner, Bodies, Composite, Events, Body } = Matter;
 const engine = Engine.create();
 const world = engine.world;
 
-//diminuire la gravita
-engine.world.gravity.y = 0.30;
+//diminuire la gravita //getty pc 0,35 others 0,55
+engine.world.gravity.y = 0.55;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -290,7 +290,9 @@ function win(ballX) {
 }
 
 function winReward(typeDiv) {
-    multipliers[typeDiv].classList.add('animate');
+    if (typeDiv != 17) { //check se la vincita e' nulla per evitare typerror
+        multipliers[typeDiv].classList.add('animate');        
+    }
 
     if (riskSelectLow.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
