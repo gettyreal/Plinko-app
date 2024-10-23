@@ -76,7 +76,7 @@ function doubleBet() {
 function betFixed() {
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
-    else if (betInput.value > 1000) betInput.value = 1000;
+    
 }
 
 const riskSelectLow = document.getElementById("riskSelectLow");
