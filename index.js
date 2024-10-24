@@ -1,6 +1,7 @@
 window.addEventListener("load", function() { //carica i colori in hystory
     for (let i = hystoryDivs.length - 1; i >= 0; i--) {
         hystoryDivs[i].style.background = backrounds[i];
+        hystoryText[i].textContent = multiplierHigh[i];
     }
 });
 
@@ -87,10 +88,10 @@ function allIn() {
     betInput.value = balance;
 }
 
-function betFixed() {
+function betFixed() { //max e min per le bet
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
-
+    else if (betInput.value > 1000) betInput.value = 1000;
 }
 
 const riskSelectLow = document.getElementById("riskSelectLow");
