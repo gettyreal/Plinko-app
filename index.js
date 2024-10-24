@@ -1,3 +1,9 @@
+window.addEventListener("load", function() { //carica i colori in hystory
+    for (let i = hystoryDivs.length - 1; i >= 0; i--) {
+        hystoryDivs[i].style.background = backrounds[i];
+    }
+});
+
 //prende tutti i menu a tendina
 const dropdowns = document.querySelectorAll('.dropdown');
 
