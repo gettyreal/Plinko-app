@@ -92,8 +92,9 @@ const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x"
 const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000", "1"];
 
 
+//per ora la lasciamo stare =)
 function changeMultipliers() {
-    multipliers.forEach(mul => mul.classList.add("winDisappearence"));
+    //multipliers.forEach(mul => mul.classList.add("winDisappearence"));
     setTimeout(() => {
         if (riskSelectLow.classList.contains("active")) {
             for (let i = 0; i < 17; i++)
@@ -107,14 +108,14 @@ function changeMultipliers() {
             for (let i = 0; i < 17; i++)
                 multipliers[i].textContent = multiplierHigh[i];
         }
-        multipliers.forEach(mul => {
+        /*multipliers.forEach(mul => {
             mul.classList.remove("winDisappearence");
             mul.classList.add("winAppearence");
-        });
+        }); */
     }, 100);
-    setTimeout(multipliers.forEach(mul => {
+    /*setTimeout(multipliers.forEach(mul => {
         mul.classList.remove("winAppearence");
-    }), 100);
+    }), 100); */
 }
 
 
