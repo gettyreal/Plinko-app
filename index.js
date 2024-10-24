@@ -112,6 +112,9 @@ function changeMultipliers() {
             mul.classList.add("winAppearence");
         });
     }, 100);
+    setTimeout(multipliers.forEach(mul => {
+        mul.classList.remove("winAppearence");
+    }), 100);
 }
 
 
@@ -328,10 +331,12 @@ const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168
     "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
 
 function hystoryChange(typeDiv) {
-    for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
-        hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
-        hystoryText[i].textContent = hystoryText[i - 1].textContent;
-
+    if (typeDiv != 17) { //se e' vincita nulla non aggiorna hystory
+        for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
+            hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
+            hystoryText[i].textContent = hystoryText[i - 1].textContent;
+    
+        }
     }
     //aggiunge la vincita piu recente al primo indice di hystory
     if (typeDiv >= 0 && typeDiv < backrounds.length) {
