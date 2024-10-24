@@ -1,4 +1,5 @@
 aggiornamenti:
 
-- animazione multiplier in auto mode. ==> capire perche' + fix ???
-- fix delle animazioni della storia e di wincita
+- animazione multiplier , bug quando si cambiano multiplier, risolvere
+- aggiunta animazione della storia, va capito come fare animaznione aggiunta abbasranza easy
+- togliere ripetibilita auto se palline sono in gioco.

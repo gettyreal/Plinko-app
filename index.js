@@ -80,7 +80,7 @@ function doubleBet() {
 function betFixed() {
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
-    
+
 }
 
 const riskSelectLow = document.getElementById("riskSelectLow");
@@ -321,90 +321,20 @@ function winReward(typeDiv) {
     hystoryChange(typeDiv);
 }
 
-const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c"]; //array dei colori
+const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
+    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
 
-function hystoryChange(typeDiv) { 
+function hystoryChange(typeDiv) {
+    for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
+        hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
+        hystoryText[i].textContent = hystoryText[i - 1].textContent;
 
-    //modifca stile e testo del primo div in base alla vincita
-    switch (typeDiv +  1) { 
-        case 1:
-            hystoryDivs[0].style.background = backrounds[0];
-            changeHystoryText(typeDiv);             
-            break;
-        case 2:
-            hystoryDivs[0].style.background = backrounds[1];
-            changeHystoryText(typeDiv);  
-            break;
-        case 3:
-            hystoryDivs[0].style.background = backrounds[2];
-            changeHystoryText(typeDiv);  
-            break;
-        case 4:
-            hystoryDivs[0].style.background = backrounds[3];
-            changeHystoryText(typeDiv);  
-            break;
-        case 5:
-            hystoryDivs[0].style.background = backrounds[4];
-            changeHystoryText(typeDiv);  
-            break;
-        case 6:
-            hystoryDivs[0].style.background = backrounds[5];
-            changeHystoryText(typeDiv);  
-            break;
-        case 7:
-            hystoryDivs[0].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 8:
-            hystoryDivs[0].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 9:
-            hystoryDivs[0].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 10:
-            hystoryDivs[0].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 11:
-            hystoryDivs[0].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 12:
-            hystoryDivs[0].style.background = backrounds[5];
-            changeHystoryText(typeDiv);  
-            break;
-        case 13:
-            hystoryDivs[0].style.background = backrounds[4];
-            changeHystoryText(typeDiv);  
-            break;
-        case 14:
-            hystoryDivs[0].style.background = backrounds[3];
-            changeHystoryText(typeDiv);  
-            break;
-        case 15:
-            hystoryDivs[0].style.background = backrounds[2];
-            changeHystoryText(typeDiv);  
-            break;
-        case 16:
-            hystoryDivs[0].style.background = backrounds[1];
-            changeHystoryText(typeDiv);  
-            break;
-        case 17:
-            hystoryDivs[0].style.background = backrounds[0];
-            changeHystoryText(typeDiv);  
-            break;
-        default:
-            break;
     }
-    /*
-    if (typeDiv != 17) { //evita di aggiornare la storia a win nulla
-        for(let i = 0; i < hystoryDivs.length; i++) {
-            hystoryDivs[i].style.backgroundColor = hystoryDivs[i+1].style.backgroundColor;
-            hystoryText[i].textContent = hystoryDivs[i+1].textContent;
-        }
-    } */
+    //aggiunge la vincita piu recente al primo indice di hystory
+    if (typeDiv >= 0 && typeDiv < backrounds.length) {
+        hystoryDivs[0].style.background = backrounds[typeDiv];
+        changeHystoryText(typeDiv);
+    }
 }
 
 function changeHystoryText(typediv) {
