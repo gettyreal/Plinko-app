@@ -1,3 +1,10 @@
+window.addEventListener("load", function() { //carica i colori in hystory
+    for (let i = hystoryDivs.length - 1; i >= 0; i--) {
+        hystoryDivs[i].style.background = backrounds[i];
+        hystoryText[i].textContent = multiplierHigh[i];
+    }
+});
+
 //prende tutti i menu a tendina
 const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -11,9 +18,13 @@ dropdowns.forEach(dropdown => {
 
     //event listner per select
     select.addEventListener('click', () => {
-        select.classList.toggle('select-clicked');
-        caret.classList.toggle('caret-rotate');
-        menu.classList.toggle('menu-open');
+        if (activeBalls == 0) {
+            select.classList.toggle('select-clicked');
+            caret.classList.toggle('caret-rotate');
+            menu.classList.toggle('menu-open');
+        } else {
+            alert("cannot modify multiplier");
+        }
     });
 
     // Loop di tutte le opzioni del menu
@@ -73,10 +84,14 @@ function doubleBet() {
     if (betInput.value < 0.1) betInput.value = 0;
 }
 
-function betFixed() {
+function allIn() {
+    betInput.value = balance;
+}
+
+function betFixed() { //max e min per le bet
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;
-    
+    else if (betInput.value > 1000) betInput.value = 1000;
 }
 
 const riskSelectLow = document.getElementById("riskSelectLow");
@@ -88,8 +103,9 @@ const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x"
 const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000", "1"];
 
 
+//per ora la lasciamo stare =)
 function changeMultipliers() {
-    multipliers.forEach(mul => mul.style.animation = "disappearDown 0.1s ease forwards");
+    //multipliers.forEach(mul => mul.classList.add("winDisappearence"));
     setTimeout(() => {
         if (riskSelectLow.classList.contains("active")) {
             for (let i = 0; i < 17; i++)
@@ -103,8 +119,14 @@ function changeMultipliers() {
             for (let i = 0; i < 17; i++)
                 multipliers[i].textContent = multiplierHigh[i];
         }
-        multipliers.forEach(mul => mul.style.animation = "enterUp 0.4s ease forwards");
+        /*multipliers.forEach(mul => {
+            mul.classList.remove("winDisappearence");
+            mul.classList.add("winAppearence");
+        }); */
     }, 100);
+    /*setTimeout(multipliers.forEach(mul => {
+        mul.classList.remove("winAppearence");
+    }), 100); */
 }
 
 
@@ -118,7 +140,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita //getty pc 0,35 others 0,55
-engine.world.gravity.y = 0.55;
+engine.world.gravity.y = 0.35;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -170,9 +192,12 @@ for (let row = 0; row < rows; row++) {
 // Aggiungi i pioli al mondo
 Composite.add(world, pegs);
 
+let activeBalls = 0; //numero delle palle in gioco
+
 // Funzione per creare una nuova pallina
 //campo di caduta: 280-360
 function createBall() {
+    activeBalls++; //ogni volta che si aggiunge una pallina si aiumenta il counter
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
 
@@ -199,7 +224,7 @@ document.getElementById('playbutton').addEventListener('click', () => {
     }
 
     if (gameAutoCheck.checked) {
-        if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
+        if (betInput.value * gamesInput.value <= balance && activeBalls === 0) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
             alert("Bet amount or number of games exceeds your balance");
@@ -215,16 +240,15 @@ document.getElementById('playbutton').addEventListener('click', () => {
 
 function repeatCreateBall(times) { //ripete creazione pallina
     if (times > 0) {
-        console.log(times);
         createBall();
         setTimeout(() => {
             repeatCreateBall(times - 1);
-        }, 200); //ripeti creazione ogni 200 millisecondi
+        }, 300); //ripeti creazione ogni 300 millisecondi
     }
 }
 
 // Avvia il motore
-Engine.run(engine);
+Matter.Runner.run(engine);
 Render.run(render);
 
 // Avvia il loop di aggiornamento fisico
@@ -240,6 +264,7 @@ Events.on(engine, 'collisionStart', (event) => {
             const ball = bodyA === ground ? bodyB : bodyA;
             Composite.remove(world, ball); //rimuovi pallina
             const ballX = ball.position.x;
+            activeBalls--; //ogni volta che una pallina scompare dal gioco si diminuisce il counter
             win(ballX);
         }
     });
@@ -314,100 +339,32 @@ function winReward(typeDiv) {
     hystoryChange(typeDiv);
 }
 
-const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c"]; //array dei colori
+const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
+    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
 
-function hystoryChange(typeDiv) { 
-
-    //modifca stile e testo del primo div in base alla vincita
-    switch (typeDiv +  1) { 
-        case 1:
-            hystoryDivs[6].style.background = backrounds[0];
-            changeHystoryText(typeDiv);             
-            break;
-        case 2:
-            hystoryDivs[6].style.background = backrounds[1];
-            changeHystoryText(typeDiv);  
-            break;
-        case 3:
-            hystoryDivs[6].style.background = backrounds[2];
-            changeHystoryText(typeDiv);  
-            break;
-        case 4:
-            hystoryDivs[6].style.background = backrounds[3];
-            changeHystoryText(typeDiv);  
-            break;
-        case 5:
-            hystoryDivs[6].style.background = backrounds[4];
-            changeHystoryText(typeDiv);  
-            break;
-        case 6:
-            hystoryDivs[6].style.background = backrounds[5];
-            changeHystoryText(typeDiv);  
-            break;
-        case 7:
-            hystoryDivs[6].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 8:
-            hystoryDivs[6].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 9:
-            hystoryDivs[6].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 10:
-            hystoryDivs[6].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 11:
-            hystoryDivs[6].style.background = backrounds[6];
-            changeHystoryText(typeDiv);  
-            break;
-        case 12:
-            hystoryDivs[6].style.background = backrounds[5];
-            changeHystoryText(typeDiv);  
-            break;
-        case 13:
-            hystoryDivs[6].style.background = backrounds[4];
-            changeHystoryText(typeDiv);  
-            break;
-        case 14:
-            hystoryDivs[6].style.background = backrounds[3];
-            changeHystoryText(typeDiv);  
-            break;
-        case 15:
-            hystoryDivs[6].style.background = backrounds[2];
-            changeHystoryText(typeDiv);  
-            break;
-        case 16:
-            hystoryDivs[6].style.background = backrounds[1];
-            changeHystoryText(typeDiv);  
-            break;
-        case 17:
-            hystoryDivs[6].style.background = backrounds[0];
-            changeHystoryText(typeDiv);  
-            break;
-        default:
-            break;
-    }
-
-    if (typeDiv != 17) { //evita di aggiornare la storia a win nulla
-        for(let i = 0; i < hystoryDivs.length; i++) {
-            hystoryDivs[i].style.backgroundColor = hystoryDivs[i+1].style.backgroundColor;
-            hystoryText[i].textContent = hystoryDivs[i+1].textContent;
+function hystoryChange(typeDiv) {
+    if (typeDiv != 17) { //se e' vincita nulla non aggiorna hystory
+        for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
+            hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
+            hystoryText[i].textContent = hystoryText[i - 1].textContent;
+    
         }
+    }
+    //aggiunge la vincita piu recente al primo indice di hystory
+    if (typeDiv >= 0 && typeDiv < backrounds.length) {
+        hystoryDivs[0].style.background = backrounds[typeDiv];
+        changeHystoryText(typeDiv);
     }
 }
 
 function changeHystoryText(typediv) {
     if (riskSelectLow.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierLow[typediv];
+        hystoryText[0].textContent = multiplierLow[typediv];
     }
     else if (riskSelectMedium.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierMedium[typediv];
+        hystoryText[0].textContent = multiplierMedium[typediv];
     }
     else if (riskSelectHigh.classList.contains("active")) {
-        hystoryText[6].textContent = multiplierHigh[typediv];
+        hystoryText[0].textContent = multiplierHigh[typediv];
     }
 }
