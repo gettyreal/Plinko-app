@@ -83,6 +83,10 @@ function doubleBet() {
     if (betInput.value < 0.1) betInput.value = 0;
 }
 
+function allIn() {
+    betInput.value = balance;
+}
+
 function betFixed() {
     betInput.value = Number(betInput.value).toFixed(2);
     if (betInput.value < 0.1) betInput.value = 0;

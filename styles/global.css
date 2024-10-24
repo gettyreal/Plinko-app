@@ -275,6 +275,7 @@ input[type="checkbox"] {
 }
 
 .amountinput {
+    margin: 5px;
     padding-left: 10px;
     background-color: #191c20;
     color: #F6E9E9;
@@ -282,8 +283,8 @@ input[type="checkbox"] {
     font-weight: 500;
     border: none;
     border-radius: 3px;
-    width: 70%;
-    height: 85%;
+    width: 55%;
+    height: 80%;
     outline: none;
     transition: 0.3s;
 }
@@ -299,8 +300,9 @@ input[type="checkbox"] {
 }
 
 .amountbutton1,
-.amountbutton2 {
-    width: 14%;
+.amountbutton2,
+.amountbutton3 {
+    width: 15%;
     height: 85%;
     background-color: #2c3036;
     border: none;
@@ -310,8 +312,16 @@ input[type="checkbox"] {
     border-radius: 5px;
 }
 
+.amountbutton3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
 .amountbutton1 h3,
-.amountbutton2 h3 {
+.amountbutton2 h3,
+.amountbutton3 h3 {
     font-size: 20px;
     margin: auto;
     text-decoration: none;
@@ -321,7 +331,8 @@ input[type="checkbox"] {
 }
 
 .amountbutton1:hover,
-.amountbutton2:hover {
+.amountbutton2:hover,
+.amountbutton3:hover {
     background-color: #373c44;
 }
 
@@ -332,6 +343,12 @@ input[type="checkbox"] {
     background-color: #191c20;
     display: inline-block;
     align-self: center;
+}
+
+.all-in-icon {
+    height: auto;
+    max-width: 100%;
+    scale: 0.45;
 }
 
 .riskcontainer {
