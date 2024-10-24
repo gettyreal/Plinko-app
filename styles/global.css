@@ -625,6 +625,14 @@ input[type="checkbox"] {
     margin: auto;
 }
 
+.winDisappearence {
+    animation: enterUp 0.4s ease forwards;
+}
+
+.winAppearence {
+    animation: enterUp 0.4s ease forwards;
+}
+
 .animateWin {
     animation: plinkoWin 0.15s ease forwards;
 }

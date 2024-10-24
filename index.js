@@ -93,7 +93,7 @@ const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", 
 
 
 function changeMultipliers() {
-    multipliers.forEach(mul => mul.style.animation = "disappearDown 0.1s ease forwards");
+    multipliers.forEach(mul => mul.classList.add("winDisappearence"));
     setTimeout(() => {
         if (riskSelectLow.classList.contains("active")) {
             for (let i = 0; i < 17; i++)
@@ -107,7 +107,10 @@ function changeMultipliers() {
             for (let i = 0; i < 17; i++)
                 multipliers[i].textContent = multiplierHigh[i];
         }
-        multipliers.forEach(mul => mul.style.animation = "enterUp 0.4s ease forwards");
+        multipliers.forEach(mul => {
+            mul.classList.remove("winDisappearence");
+            mul.classList.add("winAppearence");
+        });
     }, 100);
 }
 
@@ -206,7 +209,7 @@ document.getElementById('playbutton').addEventListener('click', () => {
     }
 
     if (gameAutoCheck.checked) {
-        if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
+        if (betInput.value * gamesInput.value <= balance && activeBalls === 0) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
             alert("Bet amount or number of games exceeds your balance");
