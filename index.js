@@ -369,6 +369,16 @@ function changeHystoryText(typediv) {
     }
 }
 
+
+const walletBox = document.getElementById("walletBox");
+
 function toggleWalletBox() {
-    
+    if (walletBox.classList.contains("HIDDEN")) {
+        // SHOW WALLETBOX
+        walletBox.classList.remove("HIDDEN");
+    }
+    else {
+        // HIDE WALLETBOX
+        walletBox.classList.add("HIDDEN");
+    }
 }
