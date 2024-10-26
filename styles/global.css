@@ -314,10 +314,17 @@ input[type="checkbox"] {
 }
 
 .amountbutton3 {
+    color: #F6E9E9;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-right: 5px;
+}
+
+.amountbutton3 h5 {
+    margin-top: 1vh;
+    height: 1px;
 }
 
 .amountbutton1 h3,
