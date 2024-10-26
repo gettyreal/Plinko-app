@@ -314,10 +314,17 @@ input[type="checkbox"] {
 }
 
 .amountbutton3 {
+    color: #F6E9E9;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-right: 5px;
+}
+
+.amountbutton3 h5 {
+    margin-top: 1vh;
+    height: 1px;
 }
 
 .amountbutton1 h3,
@@ -527,6 +534,7 @@ input[type="checkbox"] {
 
 .gamecontent {
     min-height: 820px;
+    min-width: 1055px;
     width: 70%;
     height: 110%;
     display: flex;
@@ -556,6 +564,22 @@ input[type="checkbox"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.multiplier0 {
+    display: flex;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+}
+
+.left {
+    background: linear-gradient(to left, #0a3506, transparent);
+}
+
+.right {
+    background: linear-gradient(to right, #0a3506, transparent);
 }
 
 .multiplier1 {
@@ -713,7 +737,7 @@ input[type="checkbox"] {
     height: fit-content;
     z-index: 3;
     padding: 1%;
-    background-color: rgb(34, 40, 49);
+    background-color: #191c20;
     box-shadow: 0 2px 20px rgba(0,0,0,0.5);
     border-radius: 35px;
 }
@@ -756,14 +780,14 @@ input[type="checkbox"] {
     "g1 g2"
     "g3 g2";
     div {
-        background-color: rgb(55, 60, 68);
+        background-color: #2c3036;
         border-radius: 20px;
     }
 }
 
 .balanceContainer {
     grid-area: g1;
-    border-radius: 20px 5px !important;
+    border-radius: 10px;
     margin: 0 7px 7px 0;
     padding: 20px 20px;
     display: flex;
@@ -785,7 +809,7 @@ input[type="checkbox"] {
 
 .depositAmountsContainer {
     grid-area: g3;
-    border-radius: 5px 0 0 20px !important;
+    margin-right: 7px;
     display: grid;
     padding: 10px 10px 10px 10px;
     grid-template-columns: 1fr 1fr;
@@ -794,7 +818,7 @@ input[type="checkbox"] {
     button {
         cursor: pointer;
         /* background-color: rgba(0,0,0,0.5); */
-        border-radius: 10px;
+        border-radius: 15px;
         border: solid 6px transparent;
         font-size: 30px;
         font-weight: 700;
@@ -842,7 +866,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 .cardDetailsContainer {
     grid-area: g2;
-    border-radius: 10px 20px 20px 0 !important;
+    border-radius: 10px;
     padding: 25px;
     label {
         font-size: 24px;
@@ -854,27 +878,28 @@ input[type=number]::-webkit-inner-spin-button {
         font-size: 20px;
         font-weight: 400;
         padding: 5px;
-        background-color: rgb(34, 40, 49);
-        border: solid 2px #989898;
+        background-color: #191c20;
+        border: none;
         color: #F6E9E9;
         border-radius: 8px;
         margin-bottom: 15px;
+        transition: 0.3s;
     }
     input#cardOwner {
-        width: 300px;
+        width: 400px;
     }
     input#cardNumber {
-        width: 250px;
+        width: 400px;
     }
     input#expMonth, input#expYear {
         width: 60px;
     }
     input#CVC {
-        width: 120px;
-        margin-left: 40px;
+        width: 190px;
+        margin-left: 10px;
     }
     label[for="CVC"] {
-        margin-left: 40px;
+        margin-left: 10px;
     }
 
     button {
@@ -906,9 +931,17 @@ input[type=number]::-webkit-inner-spin-button {
     font-size: 20px;
 }
 
+.inputType:hover {
+    background-color: #373c44;
+}
+
 .expAndCVC {
     display: flex;
     width: 400px;
+}
+
+.expAndCVC div{
+    width: 200px;
 }
 .disabledBuyBtn {
     opacity: 0.5;
