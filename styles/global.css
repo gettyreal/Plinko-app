@@ -814,7 +814,6 @@ input[type="checkbox"] {
 }
 .amountBtn4 {
     background-color: #084f09;
-    border: solid 6px #191c20 !important;
 }
 .amountBtn3 {
     background-color: #09580b;
@@ -827,4 +826,11 @@ input[type="checkbox"] {
 }
 .amountBtn0 {
     background-color: #168118;
+}
+.amountBtn {
+    transition: 0.1s ease;
+}
+
+.selectedAmount {
+    border: solid 6px #191c20 !important;
 }

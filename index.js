@@ -372,6 +372,8 @@ function changeHystoryText(typediv) {
 
 const blurOverlay = document.getElementById("blurOverlay");
 const walletBox = document.getElementById("walletBox");
+const amounts = document.querySelectorAll(".amountBtn");
+let buyAmo = 0;
 
 // toggleWalletBox();
 function toggleWalletBox() {
@@ -384,10 +386,12 @@ function toggleWalletBox() {
         // HIDE WALLETBOX
         walletBox.classList.add("HIDDEN");
         blurOverlay.classList.add("HIDDEN");
+        amounts.forEach(amo => amo.classList.remove("selectedAmount")); // deselect recharge amount
     }
 }
 
-
-function selectAmount(amount) {
-    
+function selectAmount(idx, amount) {
+    amounts.forEach(amo => amo.classList.remove("selectedAmount"));
+    amounts[idx].classList.add("selectedAmount");
+    buyAmo = amount;
 }
