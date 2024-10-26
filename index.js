@@ -370,6 +370,7 @@ function changeHystoryText(typediv) {
 }
 
 
+const blurOverlay = document.getElementById("blurOverlay");
 const walletBox = document.getElementById("walletBox");
 
 // toggleWalletBox();
@@ -377,9 +378,11 @@ function toggleWalletBox() {
     if (walletBox.classList.contains("HIDDEN")) {
         // SHOW WALLETBOX
         walletBox.classList.remove("HIDDEN");
+        blurOverlay.classList.remove("HIDDEN");
     }
     else {
         // HIDE WALLETBOX
         walletBox.classList.add("HIDDEN");
+        blurOverlay.classList.add("HIDDEN");
     }
 }
