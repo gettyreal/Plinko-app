@@ -55,17 +55,17 @@
         <div class="cardDetailsContainer">
           <form>
             <label for="cardOwner">Credit Card Owner</label>
-            <input type="text" id="cardOwner" minlength="1" maxlength="50" required>
+            <input type="text" id="cardOwner" minlength="1" maxlength="50" required class="inputType" placeholder="John Pork">
             <label for="cardNumber">Credit Card Number</label>
-            <input type="number" id="cardNumber" minlength="16" maxlength="30" required>
+            <input type="number" id="cardNumber" minlength="16" maxlength="30" required class="inputType" placeholder="2374 4450 2234 1266">
             <div class="expAndCVC">
               <div>
                 <label>Expiration Date</label>
-                <input type="number" min="1" max="12" id="expMonth" required><span id="expDateSep" required>/</span><input type="number" min="0" max="99" id="expYear" required>
+                <input type="number" min="1" max="12" id="expMonth" required class="inputType" placeholder="MM"><span id="expDateSep" required>/</span><input type="number" min="0" max="99" id="expYear" required class="inputType" placeholder="YY">
               </div>
               <div>
                 <label for="CVC">CVC</label>
-                <input type="password" maxlength="3" id="CVC" required>
+                <input type="password" maxlength="3" id="CVC" required class="inputType" placeholder="CVC">
               </div>
             </div>
             <button onclick="buyIn()" id="buyInBtn" class="disabledBuyBtn">Buy</button>
