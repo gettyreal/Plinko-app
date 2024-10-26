@@ -368,3 +368,7 @@ function changeHystoryText(typediv) {
         hystoryText[0].textContent = multiplierHigh[typediv];
     }
 }
+
+function toggleWalletBox() {
+    
+}
