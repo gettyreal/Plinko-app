@@ -661,12 +661,12 @@ input[type="checkbox"] {
 }
 
 @keyframes walletBoxEnter {
-    0% {
+    from {
         transform: translateX(-50%) translateY(-70%);
         opacity: 0;
         scale: 1;
     }
-    100% {
+    to {
         transform: translateX(-50%) translateY(-50%);
         opacity: 1;
         scale: 1;
@@ -674,11 +674,11 @@ input[type="checkbox"] {
 }
 
 @keyframes blurOverlay {
-    0% {
+    from {
         backdrop-filter: blur(0px);
         background-color: rgba(0,0,0,0);
     }
-    100% {
+    to {
         backdrop-filter: blur(10px);
         background-color: rgba(0,0,0,0.5);
     }

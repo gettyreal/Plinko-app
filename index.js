@@ -390,10 +390,17 @@ function toggleWalletBox() {
     }
     else {
         // HIDE WALLETBOX
-        walletBox.classList.add("HIDDEN");
-        blurOverlay.classList.add("HIDDEN");
-        amounts.forEach(amo => amo.classList.remove("selectedAmount")); // deselect recharge amount
-        buyInBtn.classList.add("disabledBuyBtn"); // disable buy btn as there's no amount selected now
+        walletBox.style.animation = "none";
+        setTimeout(() => {
+            walletBox.style.animation = "walletBoxEnter 0.4s reverse";
+        }, 1);
+        setTimeout(() => {
+            walletBox.classList.add("HIDDEN");
+            blurOverlay.classList.add("HIDDEN");
+            amounts.forEach(amo => amo.classList.remove("selectedAmount")); // deselect recharge amount
+            buyInBtn.classList.add("disabledBuyBtn"); // disable buy btn as there's no amount selected now
+            walletBox.style.animation = "walletBoxEnter 0.4s ease forwards";
+        }, 410);
     }
 }
 
