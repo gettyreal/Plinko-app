@@ -372,6 +372,7 @@ function changeHystoryText(typediv) {
 
 const walletBox = document.getElementById("walletBox");
 
+// toggleWalletBox();
 function toggleWalletBox() {
     if (walletBox.classList.contains("HIDDEN")) {
         // SHOW WALLETBOX

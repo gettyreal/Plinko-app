@@ -25,7 +25,16 @@
 
   <body>
     <div class="walletBox HIDDEN" id="walletBox">
-
+      <div class="walletHeaderContainer">
+        <span style="width: 35px;"></span> <!-- compensate space -->
+        <h1 class="walletTitle">Wallet</h1>
+        <button class="closeWalletBox" onclick="toggleWalletBox()"><img src="public/icons/closeIcon.png" alt="close"></button>
+      </div>
+      <div class="walletSuperContainer">
+        <div class="balanceContainer"></div>
+        <div class="depositAmountsContainer"></div>
+        <div class="cardDetailsContainer"></div>
+      </div>
     </div>
     <section class="homesection">
       <div class="betcontent">

@@ -163,6 +163,7 @@ h4 {
     color: #F6E9E9;
     font-size: 20px;
     font-weight: 600;
+    cursor: pointer;
     padding: 0 30px;
     transition: 0.3s ease all;
 }
@@ -499,6 +500,7 @@ input[type="checkbox"] {
     margin-top: 20px;
     box-shadow: 0 4px #dacbcb8c;
     transition: 0.2s all ease;
+    cursor: pointer;
     box-shadow: 0 5px 20px rgba(53, 155, 44, 0);
     /* opacity: 0;
     animation: btnZoomIn 0.5s 0.3s forwards; */
@@ -658,8 +660,16 @@ input[type="checkbox"] {
     display: none !important;
 }
 
+.walletHeaderContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
 .walletBox {
     display: flex;
+    flex-direction: column;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -667,7 +677,60 @@ input[type="checkbox"] {
     width: 70%;
     height: 80%;
     z-index: 1;
+    padding: 1%;
     background-color: rgb(34, 40, 49);
     box-shadow: 0 2px 20px rgba(0,0,0,0.5);
     border-radius: 35px;
+}
+
+.walletTitle {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.closeWalletBox {
+    height: 35px;
+    width: 35px;
+    border-radius: 17px;
+    border: solid 1px #373c44;
+    background-color: #222831;
+    display: flex;
+    cursor: pointer;
+    img {
+        height: 20px;
+        width: 20px;
+        margin: auto auto;
+    }
+}
+
+.walletSuperContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 2fr 3fr;
+    grid-template-areas: 
+    "g1 g2"
+    "g3 g2";
+    div {
+        background-color: lime;
+        border-radius: 20px;
+    }
+}
+
+
+.balanceContainer {
+    grid-area: g1;
+    margin: 0 5px 5px 0;
+    border-radius: 20px 20px 0 20px !important;
+}
+.depositAmountsContainer {
+    grid-area: g3;
+    border-radius: 20px 0 0 20px !important;
+}
+.cardDetailsContainer {
+    grid-area: g2;
+    border-radius: 20px 20px 20px 0 !important;
 }
