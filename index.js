@@ -64,6 +64,7 @@ gameAutoCheck.addEventListener('change', function () {
 });
 
 const walletBalance = document.getElementById("walletBalance"); //soldi nel saldo
+const walletBalance2 = document.getElementById("walletBalance2Txt");
 let balance = parseFloat(walletBalance.textContent);
 
 const betInput = document.getElementById("betInput"); //import della bet dal html
@@ -200,6 +201,7 @@ function createBall() {
     activeBalls++; //ogni volta che si aggiunge una pallina si aiumenta il counter
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
+    walletBalance2.textContent = (balance).toFixed(2);
 
     let randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
     if (randomX == 426 || randomX == 454 || randomX == 482 || randomX == 510 || randomX == 538) {
@@ -327,14 +329,17 @@ function winReward(typeDiv) {
     if (riskSelectLow.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
         walletBalance.textContent = (balance).toFixed(2);
+        walletBalance2.textContent = (balance).toFixed(2);
     }
     else if (riskSelectMedium.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierMedium[typeDiv]);
         walletBalance.textContent = (balance).toFixed(2);
+        walletBalance2.textContent = (balance).toFixed(2);
     }
     else if (riskSelectHigh.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierHigh[typeDiv]);
         walletBalance.textContent = (balance).toFixed(2);
+        walletBalance2.textContent = (balance).toFixed(2);
     }
     hystoryChange(typeDiv);
 }
@@ -366,5 +371,58 @@ function changeHystoryText(typediv) {
     }
     else if (riskSelectHigh.classList.contains("active")) {
         hystoryText[0].textContent = multiplierHigh[typediv];
+    }
+}
+
+
+const blurOverlay = document.getElementById("blurOverlay");
+const walletBox = document.getElementById("walletBox");
+const amounts = document.querySelectorAll(".amountBtn");
+const buyInBtn = document.getElementById("buyInBtn");
+let buyAmo = 0;
+
+toggleWalletBox();
+function toggleWalletBox() {
+    if (walletBox.classList.contains("HIDDEN")) {
+        // SHOW WALLETBOX
+        walletBox.classList.remove("HIDDEN");
+        blurOverlay.classList.remove("HIDDEN");
+    }
+    else {
+        // HIDE WALLETBOX
+        walletBox.style.animation = "none";
+        setTimeout(() => {
+            walletBox.style.animation = "walletBoxEnter 0.4s reverse";
+        }, 1);
+        setTimeout(() => {
+            walletBox.classList.add("HIDDEN");
+            blurOverlay.classList.add("HIDDEN");
+            amounts.forEach(amo => amo.classList.remove("selectedAmount")); // deselect recharge amount
+            buyInBtn.classList.add("disabledBuyBtn"); // disable buy btn as there's no amount selected now
+            walletBox.style.animation = "walletBoxEnter 0.4s ease forwards";
+        }, 410);
+    }
+}
+
+function selectAmount(idx, amount) {
+    amounts.forEach(amo => amo.classList.remove("selectedAmount"));
+    amounts[idx].classList.add("selectedAmount");
+    buyAmo = amount;
+    if (buyAmo != 0) {
+        buyInBtn.classList.remove("disabledBuyBtn");
+    }
+    else {
+        buyInBtn.classList.add("buyInBtn");
+    }
+}
+
+function buyIn() {
+    event.preventDefault();
+    if (buyInBtn.classList.contains("disabledBuyBtn") || !document.getElementById("cardOwner").value || !document.getElementById("cardNumber").value || !document.getElementById("expMonth").value || !document.getElementById("expYear").value || !document.getElementById("CVC").value)
+        return;
+    else {
+        balance += buyAmo;
+        walletBalance.textContent = balance.toFixed(2);
+        walletBalance2.textContent = balance.toFixed(2);
     }
 }
