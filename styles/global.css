@@ -703,7 +703,7 @@ input[type="checkbox"] {
 
 .walletBox {
     display: flex;
-    animation: walletBoxEnter 0.3s ease forwards;
+    animation: walletBoxEnter 0.4s ease forwards;
     flex-direction: column;
     position: absolute;
     left: 50%;
@@ -737,6 +737,12 @@ input[type="checkbox"] {
         width: 20px;
         margin: auto auto;
     }
+    transition: 0.2s all;
+}
+
+.closeWalletBox:hover {
+    scale: 0.9;
+    background-color: #191c20;
 }
 
 .walletSuperContainer {
@@ -745,12 +751,12 @@ input[type="checkbox"] {
     display: grid;
     margin-top: 10px;
     grid-template-columns: 2fr 3fr;
-    grid-template-rows: 2fr 3fr;
+    grid-template-rows: 1fr 2fr;
     grid-template-areas: 
     "g1 g2"
     "g3 g2";
     div {
-        background-color: lime;
+        background-color: rgb(55, 60, 68);
         border-radius: 20px;
     }
 }
@@ -758,14 +764,30 @@ input[type="checkbox"] {
 
 .balanceContainer {
     grid-area: g1;
+    border-radius: 20px 0 0 0 !important;
     margin: 0 5px 5px 0;
-    border-radius: 20px 20px 0 20px !important;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+        font-size: 26px;
+        color: #F6E9E9;
+        opacity: .85;
+    }
+    h2 {
+        font-size: 50px;
+        color: white;
+    }
 }
+
 .depositAmountsContainer {
     grid-area: g3;
-    border-radius: 20px 0 0 20px !important;
+    border-radius: 0 0 0 20px !important;
 }
 .cardDetailsContainer {
     grid-area: g2;
-    border-radius: 20px 20px 20px 0 !important;
+    border-radius: 0 20px 20px 0 !important;
 }
