@@ -534,6 +534,7 @@ input[type="checkbox"] {
 
 .gamecontent {
     min-height: 820px;
+    min-width: 1055px;
     width: 70%;
     height: 110%;
     display: flex;
@@ -563,6 +564,22 @@ input[type="checkbox"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.multiplier0 {
+    display: flex;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+}
+
+.left {
+    background: linear-gradient(to left, #0a3506, transparent);
+}
+
+.right {
+    background: linear-gradient(to right, #0a3506, transparent);
 }
 
 .multiplier1 {
