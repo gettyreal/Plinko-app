@@ -381,7 +381,6 @@ const amounts = document.querySelectorAll(".amountBtn");
 const buyInBtn = document.getElementById("buyInBtn");
 let buyAmo = 0;
 
-toggleWalletBox();
 function toggleWalletBox() {
     if (walletBox.classList.contains("HIDDEN")) {
         // SHOW WALLETBOX
