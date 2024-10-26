@@ -39,7 +39,10 @@
       <div class="walletSuperContainer">
         <div class="balanceContainer">
           <h3>Current balance</h3>
-          <h2>100.00€</h2>
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <h2 id="walletBalance2Txt">100.00</h2>
+            <i class="fa-solid fa-euro-sign fa-lg" id="walletEurSign"></i>
+          </div>
         </div>
         <div class="depositAmountsContainer">
           <button class="amountBtn amountBtn0" onclick="selectAmount(0, 5)">5€</button>
@@ -49,7 +52,25 @@
           <button class="amountBtn amountBtn4" onclick="selectAmount(4, 100)">100€</button>
           <button class="amountBtn amountBtn5" onclick="selectAmount(5, 250)">250€</button>
         </div>
-        <div class="cardDetailsContainer"></div>
+        <div class="cardDetailsContainer">
+          <form>
+            <label for="cardOwner">Credit Card Owner</label>
+            <input type="text" id="cardOwner" minlength="1" maxlength="50" required>
+            <label for="cardNumber">Credit Card Number</label>
+            <input type="number" id="cardNumber" minlength="16" maxlength="30" required>
+            <div class="expAndCVC">
+              <div>
+                <label>Expiration Date</label>
+                <input type="number" min="1" max="12" id="expMonth" required><span id="expDateSep" required>/</span><input type="number" min="0" max="99" id="expYear" required>
+              </div>
+              <div>
+                <label for="CVC">CVC</label>
+                <input type="password" maxlength="3" id="CVC" required>
+              </div>
+            </div>
+            <button onclick="buyIn()" id="buyInBtn" class="disabledBuyBtn">Buy</button>
+          </form>
+        </div>
       </div>
     </div>
     <section class="homesection">

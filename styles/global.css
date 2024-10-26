@@ -709,8 +709,8 @@ input[type="checkbox"] {
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    width: 70%;
-    height: 80%;
+    width: fit-content;
+    height: fit-content;
     z-index: 3;
     padding: 1%;
     background-color: rgb(34, 40, 49);
@@ -761,11 +761,10 @@ input[type="checkbox"] {
     }
 }
 
-
 .balanceContainer {
     grid-area: g1;
-    border-radius: 20px 0 0 0 !important;
-    margin: 0 5px 5px 0;
+    border-radius: 20px 5px !important;
+    margin: 0 7px 7px 0;
     padding: 20px 20px;
     display: flex;
     flex-direction: column;
@@ -776,6 +775,7 @@ input[type="checkbox"] {
         font-size: 26px;
         color: #F6E9E9;
         opacity: .85;
+        font-weight: 500;
     }
     h2 {
         font-size: 50px;
@@ -785,9 +785,9 @@ input[type="checkbox"] {
 
 .depositAmountsContainer {
     grid-area: g3;
-    border-radius: 0 0 0 20px !important;
+    border-radius: 5px 0 0 20px !important;
     display: grid;
-    padding: 10px 0 10px 10px;
+    padding: 10px 10px 10px 10px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 2fr 3fr;
     gap: 4px;
@@ -795,20 +795,18 @@ input[type="checkbox"] {
         cursor: pointer;
         /* background-color: rgba(0,0,0,0.5); */
         border-radius: 10px;
-        border: solid 2px #191c20;
+        border: solid 6px transparent;
         font-size: 30px;
         font-weight: 700;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 10px 30px;
         color: #cecece;
     }
 }
-.cardDetailsContainer {
-    grid-area: g2;
-    border-radius: 0 20px 20px 0 !important;
-}
+
 .amountBtn5 {
     background-color: #0c4407;
 }
@@ -832,5 +830,93 @@ input[type="checkbox"] {
 }
 
 .selectedAmount {
-    border: solid 6px #191c20 !important;
+    border: solid 6px rgb(34, 40, 49) !important;
+}
+
+/* For Chrome, Safari, Edge, and Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cardDetailsContainer {
+    grid-area: g2;
+    border-radius: 10px 20px 20px 0 !important;
+    padding: 25px;
+    label {
+        font-size: 24px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 2px;
+    }
+    input {
+        font-size: 20px;
+        font-weight: 400;
+        padding: 5px;
+        background-color: rgb(34, 40, 49);
+        border: solid 2px #989898;
+        color: #F6E9E9;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    input#cardOwner {
+        width: 300px;
+    }
+    input#cardNumber {
+        width: 250px;
+    }
+    input#expMonth, input#expYear {
+        width: 60px;
+    }
+    input#CVC {
+        width: 120px;
+        margin-left: 40px;
+    }
+    label[for="CVC"] {
+        margin-left: 40px;
+    }
+
+    button {
+        background-color: #359b2c;
+        border: 2px solid #359b2c;
+        border-radius: 10px;
+        box-shadow: 0 2px #dacbcb8c;
+        color: #b2b2b2;
+        font-size: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 5px 20px;
+        transition: 0.3s ease all;
+        margin-top: 10px;
+    }
+    button:hover {
+        transition-duration: 0.3s;
+        border: 2px solid #b2b2b2;
+        box-shadow: 0 2px 10px rgba(53, 155, 44, 0.7);
+    }
+    
+    button:active {
+        box-shadow: 0 1px #373c44;
+        transform: translateY(2px);
+    }
+}
+#expDateSep {
+    margin: 0 5px !important;
+    font-size: 20px;
+}
+
+.expAndCVC {
+    display: flex;
+    width: 400px;
+}
+.disabledBuyBtn {
+    opacity: 0.5;
+    scale: .9;
+    filter: grayscale();
+}
+
+#walletEurSign {
+    scale: 2;
+    margin-left: 10px;
 }
