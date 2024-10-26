@@ -1,4 +1,4 @@
-window.addEventListener("load", function() { //carica i colori in hystory
+window.addEventListener("load", function () { //carica i colori in hystory
     for (let i = hystoryDivs.length - 1; i >= 0; i--) {
         hystoryDivs[i].style.background = backrounds[i];
         hystoryText[i].textContent = multiplierHigh[i];
@@ -99,9 +99,9 @@ const riskSelectLow = document.getElementById("riskSelectLow");
 const riskSelectMedium = document.getElementById("riskSelectMedium");
 const riskSelectHigh = document.getElementById("riskSelectHigh");
 const multipliers = document.querySelectorAll(".multiplier");
-const multiplierLow = ["25", "18", "10x", "4x", "2x", "1x", "0.5x", "0.5x", "0.5x", "0.5x", "0.5x", "1x", "2x", "4x", "10x", "18", "25", "1"];
-const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x", "0.3x", "0.3x", "0.3x", "1.5x", "3x", "6x", "10x", "43", "100", "1"];
-const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000", "1"];
+const multiplierLow = ["25", "18", "10x", "4x", "2x", "1x", "0.5x", "0.5x", "0.5x", "0.5x", "0.5x", "1x", "2x", "4x", "10x", "18", "25", "1x"];
+const multiplierMedium = ["100", "43", "10x", "6x", "3x", "1.5x", "0.3x", "0.3x", "0.3x", "0.3x", "0.3x", "1.5x", "3x", "6x", "10x", "43", "100", "1x"];
+const multiplierHigh = ["1000", "130", "26x", "9x", "4x", "2x", "0.2x", "0.2x", "0.2x", "0.2x", "0.2x", "2x", "4x", "9x", "26x", "130", "1000", "1x"];
 
 
 //per ora la lasciamo stare =)
@@ -322,9 +322,7 @@ function win(ballX) {
 }
 
 function winReward(typeDiv) {
-    if (typeDiv != 17) { //check se la vincita e' nulla per evitare typerror
-        multipliers[typeDiv].classList.add('animateWin');
-    }
+    multipliers[typeDiv].classList.add('animateWin');
 
     if (riskSelectLow.classList.contains("active")) {
         balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
@@ -344,16 +342,14 @@ function winReward(typeDiv) {
     hystoryChange(typeDiv);
 }
 
-const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
-    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
+const backrounds = ["#0a3506", "#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
+    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09", "#0a3506"]; //array dei colori per ogni casella
 
 function hystoryChange(typeDiv) {
-    if (typeDiv != 17) { //se e' vincita nulla non aggiorna hystory
-        for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
-            hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
-            hystoryText[i].textContent = hystoryText[i - 1].textContent;
-    
-        }
+    for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
+        hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
+        hystoryText[i].textContent = hystoryText[i - 1].textContent;
+
     }
     //aggiunge la vincita piu recente al primo indice di hystory
     if (typeDiv >= 0 && typeDiv < backrounds.length) {
