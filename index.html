@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Plinko-app</title>
-    <meta name="plinko-balls-app" content="plinko-app">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet"
+    <meta name="plinko-balls-app" content="plinko-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
 
   <header class="header">
@@ -27,23 +29,33 @@
     <div class="blurOverlay HIDDEN" id="blurOverlay"></div>
     <div class="walletBox HIDDEN" id="walletBox">
       <div class="walletHeaderContainer">
-        <span style="width: 35px;"></span> <!-- compensate space -->
+        <span style="width: 35px"></span>
+        <!-- compensate space -->
         <h1 class="walletTitle">Wallet</h1>
-        <button class="closeWalletBox" onclick="toggleWalletBox()"><img src="public/icons/closeIcon.png" alt="close"></button>
+        <button class="closeWalletBox" onclick="toggleWalletBox()">
+          <img src="public/icons/closeIcon.png" alt="close" />
+        </button>
       </div>
       <div class="walletSuperContainer">
         <div class="balanceContainer">
           <h3>Current balance</h3>
           <h2>100.00€</h2>
         </div>
-        <div class="depositAmountsContainer"></div>
+        <div class="depositAmountsContainer">
+          <button class="amountBtn0" onclick="selectAmount(0)">5€</button>
+          <button class="amountBtn1" onclick="selectAmount(1)">10€</button>
+          <button class="amountBtn2" onclick="selectAmount(2)">20€</button>
+          <button class="amountBtn3" onclick="selectAmount(3)">30€</button>
+          <button class="amountBtn4" onclick="selectAmount(4)">100€</button>
+          <button class="amountBtn5" onclick="selectAmount(5)">250€</button>
+        </div>
         <div class="cardDetailsContainer"></div>
       </div>
     </div>
     <section class="homesection">
       <div class="betcontent">
         <div class="togglecontainer">
-          <input type="checkbox" id="check">
+          <input type="checkbox" id="check" />
           <label for="check" class="togglebutton">
             <span class="manualtext">Manual</span>
             <span class="autotext">Auto</span>
@@ -53,10 +65,15 @@
         <div class="amountcontainer">
           <h3>Amount</h3>
           <div class="amountdiv">
-            <input type="number" id="betInput"
+            <input
+              type="number"
+              id="betInput"
               placeholder="0,00"
-              class="amountinput" min="0.10" max="1000000.00"
-              onchange="betFixed()">
+              class="amountinput"
+              min="0.10"
+              max="1000000.00"
+              onchange="betFixed()"
+            />
             <button class="amountbutton1" onclick="halfBet()">
               <h3>½</h3>
             </button>
@@ -66,7 +83,11 @@
             </button>
             <div class="buttondivider"></div>
             <button class="amountbutton3" onclick="allIn()">
-              <img src="./public/icons/all-in.svg" alt="all-in" class="all-in-icon">
+              <img
+                src="./public/icons/all-in.svg"
+                alt="all-in"
+                class="all-in-icon"
+              />
             </button>
           </div>
         </div>
@@ -89,8 +110,14 @@
         <div class="numbercontainer" id="number">
           <h3>Number of Games</h3>
           <div class="numberdiv">
-            <input type="number" id="gamesInput" placeholder="3"
-              class="numberinput" min="1" max="1000">
+            <input
+              type="number"
+              id="gamesInput"
+              placeholder="3"
+              class="numberinput"
+              min="1"
+              max="1000"
+            />
           </div>
         </div>
         <button class="play" id="playbutton">
@@ -154,7 +181,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="historycontent">
         <div class="historydiv">
           <h4></h4>
@@ -180,9 +207,7 @@
       </div>
     </section>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
     <script src="index.js" async defer></script>
   </body>
-
 </html>

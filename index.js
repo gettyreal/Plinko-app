@@ -386,3 +386,8 @@ function toggleWalletBox() {
         blurOverlay.classList.add("HIDDEN");
     }
 }
+
+
+function selectAmount(amount) {
+    
+}

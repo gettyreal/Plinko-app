@@ -786,8 +786,45 @@ input[type="checkbox"] {
 .depositAmountsContainer {
     grid-area: g3;
     border-radius: 0 0 0 20px !important;
+    display: grid;
+    padding: 10px 0 10px 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 2fr 3fr;
+    gap: 4px;
+    button {
+        cursor: pointer;
+        /* background-color: rgba(0,0,0,0.5); */
+        border-radius: 10px;
+        border: solid 2px #191c20;
+        font-size: 30px;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #cecece;
+    }
 }
 .cardDetailsContainer {
     grid-area: g2;
     border-radius: 0 20px 20px 0 !important;
+}
+.amountBtn5 {
+    background-color: #0c4407;
+}
+.amountBtn4 {
+    background-color: #084f09;
+    border: solid 6px #191c20 !important;
+}
+.amountBtn3 {
+    background-color: #09580b;
+}
+.amountBtn2 {
+    background-color: #036704;
+}
+.amountBtn1 {
+    background-color: #157811;
+}
+.amountBtn0 {
+    background-color: #168118;
 }
