@@ -63,10 +63,10 @@ let balance = parseFloat(walletBalance.textContent);
 const betInput = document.getElementById("betInput"); //import della bet dal html
 const gamesInput = document.getElementById("gamesInput"); //import del numero di giochi
 
-const hystoryDivs = document.querySelectorAll('.historycontent .historydiv'); //import del testo x storia
-// come modificare sfondo = hystoryDivs[0].style.backgroundColor = "#0c4407";
-const hystoryText = document.querySelectorAll('.historycontent .historydiv h4'); //import del testo x storia
-// come modificare testo hystoryText[0].textContent = "2000";
+const historyDivs = document.querySelectorAll('.historycontent .historydiv'); //import del testo x storia
+// come modificare sfondo = historyDivs[0].style.backgroundColor = "#0c4407";
+const historyText = document.querySelectorAll('.historycontent .historydiv h4'); //import del testo x storia
+// come modificare testo historyText[0].textContent = "2000";
 
 function halfBet() {
     betInput.value = (parseFloat(betInput.value) / 2).toFixed(2);
@@ -332,34 +332,34 @@ function winReward(typeDiv) {
         walletBalance.textContent = (balance).toFixed(2);
         walletBalance2.textContent = (balance).toFixed(2);
     }
-    hystoryChange(typeDiv);
+    historyChange(typeDiv);
 }
 
 const backrounds = ["#0a3506", "#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
     "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09", "#0a3506"]; //array dei colori per ogni casella
 
-function hystoryChange(typeDiv) {
-    for (let i = hystoryDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
-        hystoryDivs[i].style.background = hystoryDivs[i - 1].style.background;
-        hystoryText[i].textContent = hystoryText[i - 1].textContent;
+function historyChange(typeDiv) {
+    for (let i = historyDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
+        historyDivs[i].style.background = historyDivs[i - 1].style.background;
+        historyText[i].textContent = historyText[i - 1].textContent;
 
     }
-    //aggiunge la vincita piu recente al primo indice di hystory
+    //aggiunge la vincita piu recente al primo indice di history
     if (typeDiv >= 0 && typeDiv < backrounds.length) {
-        hystoryDivs[0].style.background = backrounds[typeDiv];
+        historyDivs[0].style.background = backrounds[typeDiv];
         changeHistoryText(typeDiv);
     }
 }
 
 function changeHistoryText(typediv) {
     if (riskSelectLow.classList.contains("active")) {
-        hystoryText[0].textContent = multiplierLow[typediv];
+        historyText[0].textContent = multiplierLow[typediv];
     }
     else if (riskSelectMedium.classList.contains("active")) {
-        hystoryText[0].textContent = multiplierMedium[typediv];
+        historyText[0].textContent = multiplierMedium[typediv];
     }
     else if (riskSelectHigh.classList.contains("active")) {
-        hystoryText[0].textContent = multiplierHigh[typediv];
+        historyText[0].textContent = multiplierHigh[typediv];
     }
 }
 
