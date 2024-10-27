@@ -339,27 +339,47 @@ const backrounds = ["#0a3506", "#0c4407", "#084f09", "#09580b", "#036704", "#157
     "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09", "#0a3506"]; //array dei colori per ogni casella
 
 function historyChange(typeDiv) {
-    for (let i = historyDivs.length - 1; i > 0; i--) { //slitta tutta la storia di un posto
-        historyDivs[i].style.background = historyDivs[i - 1].style.background;
-        historyText[i].textContent = historyText[i - 1].textContent;
+    const historyContainer = document.getElementById("historyContainer");
 
-    }
-    //aggiunge la vincita piu recente al primo indice di history
-    if (typeDiv >= 0 && typeDiv < backrounds.length) {
-        historyDivs[0].style.background = backrounds[typeDiv];
-        changeHistoryText(typeDiv);
-    }
+    let container = document.createElement("div");
+    container.classList.add("superHistoryDiv");
+    container.innerHTML = `
+    <div class="historyDiv" style="background: ${backrounds[typeDiv]}">
+        <h4 id="history">${changeHistoryText(typeDiv)}</h4>
+    </div>
+    `;
+    document.querySelectorAll(".superHistoryDiv").forEach(A => {
+        A.style.animation = "none !important";
+    })
+    setTimeout(() => {
+        document.querySelectorAll(".superHistoryDiv").forEach(A => {
+            A.classList.add("histMoveAnim");
+        })
+    }, 10);
+    setTimeout(() => {
+        historyContainer.appendChild(container);
+        // Remove the oldest container if there are more than 7
+        if (historyContainer.children.length > 6) {
+            historyContainer.removeChild(historyContainer.firstChild);
+        }
+        document.querySelectorAll(".olds").forEach(A => {
+            A.classList.remove("histMoveAnim");
+            A.style.transform = "translateY(0)";
+            A.style.animation = "none";
+        })
+    }, 150);
+    document.querySelectorAll(".superHistoryDiv").forEach(A => A.classList.add("olds"));
 }
 
 function changeHistoryText(typediv) {
     if (riskSelectLow.classList.contains("active")) {
-        historyText[0].textContent = multiplierLow[typediv];
+        return multiplierLow[typediv];
     }
     else if (riskSelectMedium.classList.contains("active")) {
-        historyText[0].textContent = multiplierMedium[typediv];
+        return multiplierMedium[typediv];
     }
     else if (riskSelectHigh.classList.contains("active")) {
-        historyText[0].textContent = multiplierHigh[typediv];
+        return multiplierHigh[typediv];
     }
 }
 
