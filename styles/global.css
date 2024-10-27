@@ -647,11 +647,12 @@ input[type="checkbox"] {
 
 .historycontent {
     min-height: 375px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     margin: 5px;
     border-radius: 15px;
-    justify-content: center;
     gap: 5px;
     animation: zoomIn 0.5s ease forwards;
 }
