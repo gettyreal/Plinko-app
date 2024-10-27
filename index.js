@@ -354,11 +354,11 @@ function hystoryChange(typeDiv) {
     //aggiunge la vincita piu recente al primo indice di hystory
     if (typeDiv >= 0 && typeDiv < backrounds.length) {
         hystoryDivs[0].style.background = backrounds[typeDiv];
-        changeHystoryText(typeDiv);
+        changeHistoryText(typeDiv);
     }
 }
 
-function changeHystoryText(typediv) {
+function changeHistoryText(typediv) {
     if (riskSelectLow.classList.contains("active")) {
         hystoryText[0].textContent = multiplierLow[typediv];
     }
