@@ -858,6 +858,7 @@ input[type="checkbox"] {
 }
 
 /* For Chrome, Safari, Edge, and Opera */
+/* HIDES INCREASE/DECREASE ARROWS TO NUMBER INPUTS */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -953,3 +954,4 @@ input[type=number]::-webkit-inner-spin-button {
     scale: 2;
     margin-left: 10px;
 }
+
