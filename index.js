@@ -186,21 +186,31 @@ for (let row = 0; row < rows; row++) {
 // Aggiungi i pioli al mondo
 Composite.add(world, pegs);
 
-let activeBalls = 0; //numero delle palle in gioco
+//vincite delle palle e le loro posizioni di partenza
+const win02 = [399, 400, 402, 404, 407, 411, 412, 413, 415, 420, 424, 430, 432, 
+    434, 437, 438, 439, 441, 442, 443, 444, 450, 455, 459, 461, 462, 465, 467, 
+    467, 470, 471, 472, 475, 478, 478, 481, 483, 484, 485, 487, 489, 491, 493, 
+    494, 495, 496, 497, 498, 500, 501, 503, 504, 513, 514, 515, 523, 525, 526, 
+    527, 528, 529, 530, 533, 534, 536, 537, 539, 540, 544, 551, 552, 553, 555, 
+    556, 565];
+const win2 = [425, 435, 449, 451, 453, 456, 458, 466, 479, 480, 486, 502, 508, 509,
+    520, 524, 532, 554, 558];
+const win4 = [405, 428, 431, 460, 464, 490, 477, 560];
+const win9 = [410, 427, 429, 452, 463, 473, 488, 499, 511, 521, 535, 546, 557];
+const win26 = [406, 416, 492, 548];
+const win130 = [468, 522];
+const win1000 = [408, 418, 474];
 
-// Funzione per creare una nuova pallina
-//campo di caduta: 280-360
+let activeBalls = 0; //numero delle palle in gioco
+// Funzione per creare una nuova pallina 
 function createBall() {
+    console.log(index);
     activeBalls++; //ogni volta che si aggiunge una pallina si aiumenta il counter
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
     walletBalance2.textContent = (balance).toFixed(2);
-
-    let randomX = Math.floor(Math.random() * (544 - 420 + 1)) + 420;
-    if (randomX == 426 || randomX == 454 || randomX == 482 || randomX == 510 || randomX == 538) {
-        randomX += 1; //slitta di 1px per non lasciarla droppare li
-    }
-    const ball = Bodies.circle(randomX, 0, 11, {
+    
+    const ball = Bodies.circle(675, 0, 11, {
         restitution: 1,  // Rimbalzo
         render: { fillStyle: '#4ae745' },
         collisionFilter: {
@@ -210,6 +220,7 @@ function createBall() {
         value: betInput.value
     });
     Composite.add(world, ball);
+    index++;
 }
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
