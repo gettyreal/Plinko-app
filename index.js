@@ -441,6 +441,11 @@ function toggleWalletBox() {
         setTimeout(() => {
             walletBox.classList.add("HIDDEN");
             blurOverlay.classList.add("HIDDEN");
+            document.getElementById("cardOwner").value = "";
+            document.getElementById("cardNumber").value = "";
+            document.getElementById("expMonth").value = "";
+            document.getElementById("expYear").value = "";
+            document.getElementById("CVC").value = "";
             amounts.forEach(amo => amo.classList.remove("selectedAmount")); // deselect recharge amount
             buyInBtn.classList.add("disabledBuyBtn"); // disable buy btn as there's no amount selected now
             walletBox.style.animation = "walletBoxEnter 0.4s ease forwards";
