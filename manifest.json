@@ -10,25 +10,25 @@
     "theme_color": "#151515",
     "icons": [
       {
-        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-any-192x192.png?raw=true",
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/public/appIcons/icon-any-192x192.png?raw=true",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any"
       },
       {
-        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-any-512x512.png?raw=true",
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/public/appIcons/icon-any-512x512.png?raw=true",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "any"
       },
       {
-        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-maskable-192x192.png?raw=true",
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/public/appIcons/icon-maskable-192x192.png?raw=true",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "maskable"
       },
       {
-        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-maskable-512x512.png?raw=true",
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/public/appIcons/icon-maskable-512x512.png?raw=true",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "maskable"
