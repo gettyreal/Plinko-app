@@ -988,20 +988,42 @@ input[type=number]::-webkit-inner-spin-button {
 
 .snackbarContainer {
     animation: snackbarEntrance 0.2s linear forwards;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
     width: 450px;
     height: fit-content;
-    margin: 2.5px 0;
+    margin: 4.5px 0;
     background-color: rgba(80, 87, 99, 0.2);
     backdrop-filter: blur(15px);
     border: solid 2px #191c20;
-    padding: 10px;
-    border-radius: 15px;
+    padding: 0px;
+    border-radius: 10px;
     z-index: 4;
     box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+}
+
+.snackbarJustify {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 10px 5px 10px;
+}
+
+@keyframes timebarDisappear {
+    from {
+        clip-path: inset(0 0% 0 0);
+    }
+    to {
+        clip-path: inset(0 100% 0 0);
+    }
+}
+
+.timebar {
+    width: 430px;
+    height: 2px;
+    margin: 0 auto 5px auto;
+    border-radius: 8px 8px;
+    background-color: #359b2c;
+    animation: timebarDisappear 3s cubic-bezier(0.25, 0.30, 0.45, 0.99) forwards;
+    opacity: 1;
 }
 
 .snackbarContainer .close {

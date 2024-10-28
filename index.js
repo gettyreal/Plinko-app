@@ -187,11 +187,11 @@ for (let row = 0; row < rows; row++) {
 Composite.add(world, pegs);
 
 //vincite delle palle e le loro posizioni di partenza
-const win02 = [399, 400, 402, 404, 407, 411, 412, 413, 415, 420, 424, 430, 432, 
-    434, 437, 438, 439, 441, 442, 443, 444, 450, 455, 459, 461, 462, 465, 467, 
-    467, 470, 471, 472, 475, 478, 478, 481, 483, 484, 485, 487, 489, 491, 493, 
-    494, 495, 496, 497, 498, 500, 501, 503, 504, 513, 514, 515, 523, 525, 526, 
-    527, 528, 529, 530, 533, 534, 536, 537, 539, 540, 544, 551, 552, 553, 555, 
+const win02 = [399, 400, 402, 404, 407, 411, 412, 413, 415, 420, 424, 430, 432,
+    434, 437, 438, 439, 441, 442, 443, 444, 450, 455, 459, 461, 462, 465, 467,
+    467, 470, 471, 472, 475, 478, 478, 481, 483, 484, 485, 487, 489, 491, 493,
+    494, 495, 496, 497, 498, 500, 501, 503, 504, 513, 514, 515, 523, 525, 526,
+    527, 528, 529, 530, 533, 534, 536, 537, 539, 540, 544, 551, 552, 553, 555,
     556, 565];
 const win2 = [425, 435, 449, 451, 453, 456, 458, 466, 479, 480, 486, 502, 508, 509,
     520, 524, 532, 554, 558];
@@ -240,7 +240,6 @@ function createBall() {
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
     walletBalance2.textContent = (balance).toFixed(2);
-    
     const ball = Bodies.circle(SemiRandomX(), 0, 11, {
         restitution: 1,  // Rimbalzo
         render: { fillStyle: '#4ae745' },
@@ -256,15 +255,18 @@ function createBall() {
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
     if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
-        getSnackbar("Bet amount not valid");
+        getSnackbar("Bet amount can't be zero.");
         return;
     }
-
+    
     if (gameAutoCheck.checked) {
+        if (gamesInput.value == 0) {
+            getSnackbar("Number of games can't be zero.");
+        }
         if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
-            getSnackbar("Bet amount or number of games exceeds your balance");
+            getSnackbar("The total cost of this game exceeds your balance");
         }
     } else {
         if (betInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
@@ -478,14 +480,18 @@ function buyIn() {
 let snackIdx = 0;
 let space = 7.5;
 const snackList = document.getElementById("snackList");
+
 function getSnackbar(text) {
     let snack = document.createElement("div");
     snack.classList.add("snackbarContainer");
     snack.id = (`snack${snackIdx}`);
     snack.innerHTML =
         `
+    <div class="snackbarJustify">
       <h2 class="snackbarContent">${text}</h2>
       <button class="close" onclick="closeSnackbar(${snackIdx})"><img src="public/icons/closeIcon.png" alt="close"></button>
+    </div>
+      <div class="timebar"></div>
     `;
     snackList.appendChild(snack);
     removeSnackbar(snackIdx);
@@ -497,7 +503,13 @@ function removeSnackbar(idx) {
     setTimeout(() => {
         if (el)
             try {
-                closeSnackbar(idx);
+                el.style.animation = "none";
+                setTimeout(() => {
+                    el.style.animation = "snackbarEntrance 0.2s linear reverse";
+                }, 5);
+                setTimeout(() => {
+                    closeSnackbar(idx);
+                }, 200);
             } catch (e) { }
     }, 3000);
 }
