@@ -16,7 +16,7 @@ dropdowns.forEach(dropdown => {
             caret.classList.toggle('caret-rotate');
             menu.classList.toggle('menu-open');
         } else {
-            alert("cannot modify multiplier");
+            getSnackbar("Cannot modify multiplier while a game is running");
         }
     });
 
@@ -226,7 +226,7 @@ function createBall() {
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
     if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
-        alert("bet amount not valid");
+        getSnackbar("Bet amount not valid");
         return;
     }
 
@@ -234,13 +234,13 @@ document.getElementById('playbutton').addEventListener('click', () => {
         if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
-            alert("Bet amount or number of games exceeds your balance");
+            getSnackbar("Bet amount or number of games exceeds your balance");
         }
     } else {
         if (betInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
             createBall(); // creazione di una pallina
         } else {
-            alert("Bet amount exceeds your balance");
+            getSnackbar("Bet amount exceeds your balance");
         }
     }
 });
@@ -439,11 +439,49 @@ function selectAmount(idx, amount) {
 
 function buyIn() {
     event.preventDefault();
-    if (buyInBtn.classList.contains("disabledBuyBtn") || !document.getElementById("cardOwner").value || !document.getElementById("cardNumber").value || !document.getElementById("expMonth").value || !document.getElementById("expYear").value || !document.getElementById("CVC").value)
+    if (buyInBtn.classList.contains("disabledBuyBtn")) {
+        getSnackbar("You must select an amount to add to your balance");
         return;
+    }
+    if (!document.getElementById("cardOwner").value || !document.getElementById("cardNumber").value || !document.getElementById("expMonth").value || !document.getElementById("expYear").value || !document.getElementById("CVC").value) {
+        getSnackbar("You must fill the form with your credit card details.");
+        return;
+    }
     else {
         balance += buyAmo;
         walletBalance.textContent = balance.toFixed(2);
         walletBalance2.textContent = balance.toFixed(2);
     }
+}
+
+let snackIdx = 0;
+let space = 7.5;
+const snackList = document.getElementById("snackList");
+function getSnackbar(text) {
+    let snack = document.createElement("div");
+    snack.classList.add("snackbarContainer");
+    snack.id = (`snack${snackIdx}`);
+    snack.innerHTML =
+        `
+      <h2 class="snackbarContent">${text}</h2>
+      <button class="close" onclick="closeSnackbar(${snackIdx})"><img src="public/icons/closeIcon.png" alt="close"></button>
+    `;
+    snackList.appendChild(snack);
+    removeSnackbar(snackIdx);
+    snackIdx++;
+}
+
+function removeSnackbar(idx) {
+    const el = document.getElementById(`snack${idx}`);
+    setTimeout(() => {
+        if (el)
+            try {
+                closeSnackbar(idx);
+            } catch (e) { }
+    }, 3000);
+}
+
+function closeSnackbar(idx) {
+    document.getElementById(`snack${idx}`).remove();
+    snackIdx--;
 }
