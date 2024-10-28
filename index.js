@@ -211,7 +211,7 @@ const weights = { //83% RENDITA
     win1000: 1    // 0.01%
 };
 
-const totalWeight = 10276; // totale dei pesi
+const totalWeight = Object.values(weights).reduce((sum, weight) => sum + weight, 0);// totale dei pesi
 // Funzione per ottenere un array in base ai pesi
 function selectArray() {
     const random = Math.random() * totalWeight; //genera numero rand
