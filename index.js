@@ -450,7 +450,7 @@ function getSnackbar(text) {
       <button class="close" onclick="closeSnackbar(${snackIdx})"><img src="public/icons/closeIcon.png" alt="close"></button>
     `;
     snackList.appendChild(snack);
-    removeSnackbar(snackIdx);
+    // removeSnackbar(snackIdx);
     snackIdx++;
 }
 
