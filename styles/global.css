@@ -566,22 +566,6 @@ input[type="checkbox"] {
     align-items: center;
 }
 
-.multiplier0 {
-    display: flex;
-    text-align: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-}
-
-.left {
-    background: linear-gradient(to left, #0a3506, transparent);
-}
-
-.right {
-    background: linear-gradient(to right, #0a3506, transparent);
-}
-
 .multiplier1 {
     background-color: #359b2c;
     display: flex;

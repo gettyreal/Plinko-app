@@ -134,7 +134,7 @@ const engine = Engine.create();
 const world = engine.world;
 
 //diminuire la gravita //getty pc 0,35 others 0,55
-engine.world.gravity.y = 0.35;
+engine.world.gravity.y = 0.55;
 
 // Crea il rendering della scena
 const canvas = document.getElementById('plinkoCanvas');
@@ -315,31 +315,32 @@ function win(ballX) {
 }
 
 function winReward(typeDiv) {
-    multipliers[typeDiv].classList.add('animateWin');
-
-    if (riskSelectLow.classList.contains("active")) {
+    if (typeDiv != 17) {
+        multipliers[typeDiv].classList.add('animateWin'); //animazione della vincita
+    }
+    // assegnazione della vincita
+    if (riskSelectLow.classList.contains("active"))
         balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
-        walletBalance.textContent = (balance).toFixed(2);
-        walletBalance2.textContent = (balance).toFixed(2);
-    }
-    else if (riskSelectMedium.classList.contains("active")) {
+
+    else if (riskSelectMedium.classList.contains("active"))
         balance += betInput.value * parseFloat(multiplierMedium[typeDiv]);
-        walletBalance.textContent = (balance).toFixed(2);
-        walletBalance2.textContent = (balance).toFixed(2);
-    }
-    else if (riskSelectHigh.classList.contains("active")) {
+
+    else if (riskSelectHigh.classList.contains("active"))
         balance += betInput.value * parseFloat(multiplierHigh[typeDiv]);
-        walletBalance.textContent = (balance).toFixed(2);
-        walletBalance2.textContent = (balance).toFixed(2);
-    }
+
+    walletBalance.textContent = (balance).toFixed(2);
+    walletBalance2.textContent = (balance).toFixed(2);
+
     historyChange(typeDiv);
 }
 
-const backrounds = ["#0a3506", "#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
-    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09", "#0a3506"]; //array dei colori per ogni casella
+const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168118", "#359b2c",
+    "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
 
 function historyChange(typeDiv) {
-    const historyContainer = document.getElementById("historyContainer");
+    if (typeDiv == 17) {
+        return;
+    }
 
     let container = document.createElement("div");
     container.classList.add("superHistoryDiv");
