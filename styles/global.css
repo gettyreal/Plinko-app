@@ -988,17 +988,16 @@ input[type=number]::-webkit-inner-spin-button {
 
 .snackbarContainer {
     animation: snackbarEntrance 0.2s linear forwards;
-    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 450px;
     height: fit-content;
-    background-color: #505763;
+    margin-bottom: 5px;
+    background-color: rgba(80, 87, 99, 0.2);
+    backdrop-filter: blur(15px);
     border: solid 2px #191c20;
-    right: 10px;
-    top: 7.5px;
     padding: 10px;
     border-radius: 15px;
 }
@@ -1028,4 +1027,10 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     font-size: 18px;
     font-weight: 400;
+}
+
+#snackList {
+    right: 10px;
+    top: 7.5px;
+    position: absolute;
 }
