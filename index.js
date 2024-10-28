@@ -343,10 +343,7 @@ function win(ballX, ball) {
         winReward(15, ball);
     } else if (ballX > 908 && ballX < 952) {
         winReward(16, ball);
-    } else { //se la pallina cade al suolo fuori dalle vincite
-        winReward(17, ball); //17 non da nulla e assegna multiplier a 1;
     }
-
     setTimeout(() => {
         multipliers.forEach(mul => {
             if (mul.classList.contains('animateWin')) {
@@ -357,9 +354,7 @@ function win(ballX, ball) {
 }
 
 function winReward(typeDiv, ball) {
-    if (typeDiv != 17) {
-        multipliers[typeDiv].classList.add('animateWin'); //animazione della vincita
-    }
+    multipliers[typeDiv].classList.add('animateWin'); //animazione della vincita
     // assegnazione della vincita
     if (riskSelectLow.classList.contains("active"))
         balance += ball.value * parseFloat(multiplierLow[typeDiv]);
@@ -380,10 +375,6 @@ const backrounds = ["#0c4407", "#084f09", "#09580b", "#036704", "#157811", "#168
     "#359b2c", "#359b2c", "#359b2c", "#359b2c", "#168118", "#157811", "#036704", "#09580b", "#0c4407", "#084f09"]; //array dei colori per ogni casella
 
 function historyChange(typeDiv) {
-    if (typeDiv == 17) {
-        return;
-    }
-
     let container = document.createElement("div");
     container.classList.add("superHistoryDiv");
     container.innerHTML = `
