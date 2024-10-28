@@ -220,7 +220,7 @@ document.getElementById('playbutton').addEventListener('click', () => {
     }
 
     if (gameAutoCheck.checked) {
-        if (betInput.value * gamesInput.value <= balance && activeBalls === 0) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
+        if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
             alert("Bet amount or number of games exceeds your balance");
@@ -239,7 +239,7 @@ function repeatCreateBall(times) { //ripete creazione pallina
         createBall();
         setTimeout(() => {
             repeatCreateBall(times - 1);
-        }, 300); //ripeti creazione ogni 300 millisecondi
+        }, 100); //ripeti creazione ogni 300 millisecondi
     }
 }
 
