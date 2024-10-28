@@ -436,3 +436,32 @@ function buyIn() {
         walletBalance2.textContent = balance.toFixed(2);
     }
 }
+
+let snackIdx = 0;
+getSnackbar("gigi fai ovrov");
+function getSnackbar(text) {
+    let snack = document.createElement("div");
+    snack.classList.add("snackbarContainer");
+    snack.id = (`snack${snackIdx}`);
+    snack.innerHTML =
+    `
+      <h2 class="snackbarContent">${text}</h2>
+      <button class="close" onclick="closeSnackbar(${snackIdx})"><img src="public/icons/closeIcon.png" alt="close"></button>
+    `;
+    snack.style.top = `${7.5+(55*snackIdx)}px`;
+    document.body.appendChild(snack);
+    removeSnackbar(snackIdx);
+    snackIdx++;
+}
+
+function removeSnackbar(idx) {
+    const el = document.getElementById(`snack${idx}`);
+    setTimeout(() => {
+        if (el)
+            el.remove();
+    }, 5000); // 5000 milliseconds = 5 seconds
+}
+
+function closeSnackbar(idx) {
+    document.getElementById(`snack${idx}`).remove();
+}

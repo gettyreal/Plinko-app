@@ -972,3 +972,60 @@ input[type=number]::-webkit-inner-spin-button {
     margin-left: 10px;
 }
 
+@keyframes snackbarEntrance {
+    0% {
+        opacity: 0%;
+        transform: translateY(-20%);
+    }
+    60% {
+        transform: translateY(10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.snackbarContainer {
+    animation: snackbarEntrance 0.2s linear forwards;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 450px;
+    height: fit-content;
+    background-color: #505763;
+    border: solid 2px #191c20;
+    right: 10px;
+    top: 7.5px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.snackbarContainer .close {
+    height: 25px;
+    width: 25px;
+    border-radius: 17px;
+    border: solid 1px #373c44;
+    background-color: #222831;
+    display: flex;
+    cursor: pointer;
+    img {
+        height: 15px;
+        width: 15px;
+        margin: auto auto;
+    }
+    transition: 0.2s all;
+}
+
+.snackbarContainer .close:hover {
+    scale: 0.9;
+    background-color: #191c20;
+}
+
+.snackbarContent {
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+}
