@@ -206,7 +206,8 @@ function createBall() {
         collisionFilter: {
             category: ballCategory,
             mask: pegCategory | wallCategory
-        }
+        },
+        value: betInput.value
     });
     Composite.add(world, ball);
 }
@@ -260,49 +261,49 @@ Events.on(engine, 'collisionStart', (event) => {
             Composite.remove(world, ball); //rimuovi pallina
             const ballX = ball.position.x;
             activeBalls--; //ogni volta che una pallina scompare dal gioco si diminuisce il counter
-            win(ballX);
+            win(ballX, ball);
         }
     });
 });
 
-function win(ballX) {
+function win(ballX, ball) {
     // casi di caduta
     if (ballX > 12 && ballX < 56) {
-        winReward(0);
+        winReward(0, ball);
     } else if (ballX > 68 && ballX < 112) {
-        winReward(1);
+        winReward(1, ball);
     } else if (ballX > 124 && ballX < 168) {
-        winReward(2);
+        winReward(2, ball);
     } else if (ballX > 180 && ballX < 224) {
-        winReward(3);
+        winReward(3, ball);
     } else if (ballX > 236 && ballX < 280) {
-        winReward(4);
+        winReward(4, ball);
     } else if (ballX > 292 && ballX < 336) {
-        winReward(5);
+        winReward(5, ball);
     } else if (ballX > 348 && ballX < 392) {
-        winReward(6);
+        winReward(6, ball);
     } else if (ballX > 404 && ballX < 448) {
-        winReward(7);
+        winReward(7, ball);
     } else if (ballX > 460 && ballX < 504) {
-        winReward(8);
+        winReward(8, ball);
     } else if (ballX > 516 && ballX < 560) {
-        winReward(9);
+        winReward(9, ball);
     } else if (ballX > 572 && ballX < 616) {
-        winReward(10);
+        winReward(10, ball);
     } else if (ballX > 628 && ballX < 672) {
-        winReward(11);
+        winReward(11, ball);
     } else if (ballX > 684 && ballX < 728) {
-        winReward(12);
+        winReward(12, ball);
     } else if (ballX > 740 && ballX < 784) {
-        winReward(13);
+        winReward(13, ball);
     } else if (ballX > 796 && ballX < 840) {
-        winReward(14);
+        winReward(14, ball);
     } else if (ballX > 852 && ballX < 896) {
-        winReward(15);
+        winReward(15, ball);
     } else if (ballX > 908 && ballX < 952) {
-        winReward(16);
+        winReward(16, ball);
     } else { //se la pallina cade al suolo fuori dalle vincite
-        winReward(17); //17 non da nulla e assegna multiplier a 1;
+        winReward(17, ball); //17 non da nulla e assegna multiplier a 1;
     }
 
     setTimeout(() => {
@@ -314,19 +315,19 @@ function win(ballX) {
     }, 150); // Durata dell'animazione in millisecondi
 }
 
-function winReward(typeDiv) {
+function winReward(typeDiv, ball) {
     if (typeDiv != 17) {
         multipliers[typeDiv].classList.add('animateWin'); //animazione della vincita
     }
     // assegnazione della vincita
     if (riskSelectLow.classList.contains("active"))
-        balance += betInput.value * parseFloat(multiplierLow[typeDiv]);
+        balance += ball.value * parseFloat(multiplierLow[typeDiv]);
 
     else if (riskSelectMedium.classList.contains("active"))
-        balance += betInput.value * parseFloat(multiplierMedium[typeDiv]);
+        balance += ball.value * parseFloat(multiplierMedium[typeDiv]);
 
     else if (riskSelectHigh.classList.contains("active"))
-        balance += betInput.value * parseFloat(multiplierHigh[typeDiv]);
+        balance += ball.value * parseFloat(multiplierHigh[typeDiv]);
 
     walletBalance.textContent = (balance).toFixed(2);
     walletBalance2.textContent = (balance).toFixed(2);
