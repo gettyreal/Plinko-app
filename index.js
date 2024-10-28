@@ -82,6 +82,12 @@ function allIn() {
     betInput.value = balance;
 }
 
+function betFixed() { //max e min per le bet
+    betInput.value = Number(betInput.value).toFixed(2);
+    if (betInput.value < 0.1) betInput.value = 0;
+    else if (betInput.value > 1000000000) betInput.value = 1000000000;
+}
+
 const riskSelectLow = document.getElementById("riskSelectLow");
 const riskSelectMedium = document.getElementById("riskSelectMedium");
 const riskSelectHigh = document.getElementById("riskSelectHigh");
