@@ -9,8 +9,56 @@
     "background_color": "#151515",
     "theme_color": "#151515",
     "icons": [
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-any-192x192.png?raw=true",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-any-512x512.png?raw=true",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-maskable-192x192.png?raw=true",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/icons/icon-maskable-512x512.png?raw=true",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
     ],
     "screenshots": [
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/screenshots/desktop-screenshot1.png?raw=true",
+        "sizes": "1082x2402",
+        "type": "image/png"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/screenshots/desktop-screenshot2.png?raw=true",
+        "sizes": "1082x2402",
+        "type": "image/png"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/screenshots/desktop-screenshot3.png?raw=true",
+        "sizes": "1082x2402",
+        "type": "image/png"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/screenshots/desktop-screenshot4.png?raw=true",
+        "sizes": "1082x2402",
+        "type": "image/png"
+      },
+      {
+        "src": "https://github.com/gettyreal/Plinko-app/blob/main/screenshots/desktop-screenshot5.png?raw=true",
+        "sizes": "1082x2402",
+        "type": "image/png"
+      }
     ]
   }
-  

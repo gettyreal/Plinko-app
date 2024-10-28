@@ -1,3 +1,20 @@
+serviceWorker();
+function serviceWorker() {
+  if ('serviceWorker' in navigator) {
+    console.log('Service worker compatible');
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('https://gettyreal.github.io/Plinko-app/service_worker.js')
+        .then(reg => {
+          console.log('Service worker registered');
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    })
+  }
+}
+
 //prende tutti i menu a tendina
 const dropdowns = document.querySelectorAll('.dropdown');
 
