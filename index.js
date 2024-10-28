@@ -226,15 +226,18 @@ function createBall() {
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
     if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
-        getSnackbar("Bet amount not valid");
+        getSnackbar("Bet amount can't be zero.");
         return;
+    }
+    if (gamesInput.value == 0) {
+        getSnackbar("Number of games can't be zero.");
     }
 
     if (gameAutoCheck.checked) {
         if (betInput.value * gamesInput.value <= balance) { //check se il totale giocato non sia piu alto del balance + se non ci siano ancora palline in gioco.
             repeatCreateBall(parseInt(gamesInput.value)); //creazione in ripetizione di tot palline
         } else {
-            getSnackbar("Bet amount or number of games exceeds your balance");
+            getSnackbar("The total cost of this game exceeds your balance");
         }
     } else {
         if (betInput.value <= balance) { //check se il totale giocato non sia piu alto del balance
