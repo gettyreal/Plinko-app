@@ -994,12 +994,14 @@ input[type=number]::-webkit-inner-spin-button {
     align-items: flex-start;
     width: 450px;
     height: fit-content;
-    margin-bottom: 5px;
+    margin: 2.5px 0;
     background-color: rgba(80, 87, 99, 0.2);
     backdrop-filter: blur(15px);
     border: solid 2px #191c20;
     padding: 10px;
     border-radius: 15px;
+    z-index: 4;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.5);
 }
 
 .snackbarContainer .close {
@@ -1034,5 +1036,5 @@ input[type=number]::-webkit-inner-spin-button {
     right: 10px;
     top: 7.5px;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
 }
