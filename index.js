@@ -201,16 +201,47 @@ const win26 = [406, 416, 492, 548];
 const win130 = [468, 522];
 const win1000 = [408, 418, 474];
 
+const weights = { //83% RENDITA
+    win02: 8600,  // 86%
+    win2: 1100,   // 11%
+    win4: 500,    // 5%
+    win9: 50,     // 0.5%
+    win26: 20,    // 0.2%
+    win130: 5,    // 0.05%
+    win1000: 1    // 0.01%
+};
+
+const totalWeight = 10276; // totale dei pesi
+// Funzione per ottenere un array in base ai pesi
+function selectArray() {
+    const random = Math.random() * totalWeight; //genera numero rand
+    let comulativeSum = 0;
+
+    for (const [key, weight] of Object.entries(weights)) {
+        comulativeSum += weight;
+        if (random < comulativeSum) { //quando domma comulativa e' maggiore di numero rand
+            return key; //ritorna nome dell'array
+        }
+    }
+}
+
+// Funzione SemiRandomX
+function SemiRandomX() {
+    const selectedArrayName = selectArray();
+    const selectedArray = eval(selectedArrayName); // Ottieni l'array in base al nome
+    const randomIndex = Math.floor(Math.random() * selectedArray.length);
+    return selectedArray[randomIndex]; //ritorna un random index dell array
+}
+
 let activeBalls = 0; //numero delle palle in gioco
 // Funzione per creare una nuova pallina 
 function createBall() {
-    console.log(index);
     activeBalls++; //ogni volta che si aggiunge una pallina si aiumenta il counter
     balance -= betInput.value; //modifica del saldo
     walletBalance.textContent = (balance).toFixed(2);
     walletBalance2.textContent = (balance).toFixed(2);
     
-    const ball = Bodies.circle(675, 0, 11, {
+    const ball = Bodies.circle(SemiRandomX(), 0, 11, {
         restitution: 1,  // Rimbalzo
         render: { fillStyle: '#4ae745' },
         collisionFilter: {
@@ -220,7 +251,6 @@ function createBall() {
         value: betInput.value
     });
     Composite.add(world, ball);
-    index++;
 }
 
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
