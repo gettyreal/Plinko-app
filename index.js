@@ -16,7 +16,7 @@ dropdowns.forEach(dropdown => {
             caret.classList.toggle('caret-rotate');
             menu.classList.toggle('menu-open');
         } else {
-            getSnackbar("cannot modify multiplier");
+            getSnackbar("Cannot modify multiplier while a game is running");
         }
     });
 
@@ -215,7 +215,7 @@ function createBall() {
 // Aggiungi un nuovo evento per aggiungere una pallina cliccando
 document.getElementById('playbutton').addEventListener('click', () => {
     if (betInput.value == 0) { //check in anticipo se il bet ammunt non e' stato riempito.
-        getSnackbar("bet amount not valid");
+        getSnackbar("Bet amount not valid");
         return;
     }
 
@@ -428,8 +428,14 @@ function selectAmount(idx, amount) {
 
 function buyIn() {
     event.preventDefault();
-    if (buyInBtn.classList.contains("disabledBuyBtn") || !document.getElementById("cardOwner").value || !document.getElementById("cardNumber").value || !document.getElementById("expMonth").value || !document.getElementById("expYear").value || !document.getElementById("CVC").value)
+    if (buyInBtn.classList.contains("disabledBuyBtn")) {
+        getSnackbar("You must select an amount to add to your balance");
         return;
+    }
+    if (!document.getElementById("cardOwner").value || !document.getElementById("cardNumber").value || !document.getElementById("expMonth").value || !document.getElementById("expYear").value || !document.getElementById("CVC").value) {
+        getSnackbar("You must fill the form with your credit card details.");
+        return;
+    }
     else {
         balance += buyAmo;
         walletBalance.textContent = balance.toFixed(2);
@@ -450,7 +456,7 @@ function getSnackbar(text) {
       <button class="close" onclick="closeSnackbar(${snackIdx})"><img src="public/icons/closeIcon.png" alt="close"></button>
     `;
     snackList.appendChild(snack);
-    // removeSnackbar(snackIdx);
+    removeSnackbar(snackIdx);
     snackIdx++;
 }
 
@@ -461,7 +467,7 @@ function removeSnackbar(idx) {
             try {
                 closeSnackbar(idx);
             } catch (e) { }
-    }, 5000);
+    }, 3000);
 }
 
 function closeSnackbar(idx) {

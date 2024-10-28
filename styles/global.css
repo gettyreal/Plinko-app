@@ -1034,4 +1034,5 @@ input[type=number]::-webkit-inner-spin-button {
     right: 10px;
     top: 7.5px;
     position: absolute;
+    z-index: 2;
 }
