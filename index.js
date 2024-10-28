@@ -328,7 +328,7 @@ function winReward(typeDiv, ball) {
 
     else if (riskSelectHigh.classList.contains("active"))
         balance += ball.value * parseFloat(multiplierHigh[typeDiv]);
-    balance = balance.toFixed(2);
+    balance = parseFloat(balance.toFixed(2));
     walletBalance.textContent = (balance).toFixed(2);
     walletBalance2.textContent = (balance).toFixed(2);
 
