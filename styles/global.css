@@ -311,6 +311,7 @@ input[type="checkbox"] {
     text-align: center;
     transition: 0.3s;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .amountbutton3 {
