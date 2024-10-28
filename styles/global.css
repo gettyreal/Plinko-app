@@ -1060,3 +1060,46 @@ input[type=number]::-webkit-inner-spin-button {
     position: absolute;
     z-index: 4;
 }
+
+
+@keyframes cashUpExit {
+    0% {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+    }
+
+    20% {
+        scale: 0.8;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        scale: 0.8;
+        transform: translateY(-20%);
+    }
+}
+@keyframes cashUpEntrance {
+    0% {
+        opacity: 0;
+        scale: 0.9;
+        transform: translateY(20%);
+    }
+
+    50% {
+        scale: 1;
+        transform: translateY(0);
+    }
+
+    70% {
+        scale: 1.1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+    }
+}

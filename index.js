@@ -477,8 +477,12 @@ function buyIn() {
     }
     else {
         balance += buyAmo;
-        walletBalance.textContent = balance.toFixed(2);
-        walletBalance2.textContent = balance.toFixed(2);
+        walletBalance2.style.animation = "cashUpExit 0.1s forwards";
+        setTimeout(() => {
+            walletBalance.textContent = balance.toFixed(2);
+            walletBalance2.textContent = balance.toFixed(2);
+            walletBalance2.style.animation = "cashUpEntrance 0.15s forwards";
+          }, 100);
     }
 }
 
