@@ -218,7 +218,7 @@ const win26 = [406, 416, 492, 548];
 const win130 = [468, 522];
 const win1000 = [408, 418, 474];
 
-const weights = { //83% RENDITA
+let weights = { //83% RENDITA
     win02: 8600,  // 86%
     win2: 1100,   // 11%
     win4: 500,    // 5%
